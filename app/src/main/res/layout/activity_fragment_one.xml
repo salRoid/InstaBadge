@@ -6,16 +6,10 @@
     android:layout_height="match_parent"
     tools:context="tech.salroid.demo.instabadge.FragmentOne">
 
-    <include
-        layout="@layout/custombadge"/>
-
-    <TextView
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <tech.salroid.demo.instabadge.InstaBadge
         android:layout_centerInParent="true"
-        android:text="Home"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textStyle="bold" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </tech.salroid.demo.instabadge.InstaBadge>
 
 </RelativeLayout>

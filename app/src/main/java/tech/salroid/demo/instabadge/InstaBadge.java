@@ -5,12 +5,8 @@ import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.RotateDrawable;
-import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
-import android.util.TypedValue;
 import android.view.Gravity;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -37,8 +33,7 @@ public class InstaBadge extends LinearLayout {
     }
 
     private void init(Context context) {
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         setOrientation(VERTICAL);
         setLayoutParams(params);
 
@@ -64,12 +59,6 @@ public class InstaBadge extends LinearLayout {
         LayoutParams text_params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1f);
         text_params.setMargins(dpAsPixels, 0, 0, 0);
 
-        /*DisplayMetrics dm = new DisplayMetrics();
-        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        windowManager.getDefaultDisplay().getMetrics(dm);
-        float pixelSize = (int) 10 * dm.scaledDensity;
-        badge_text.setTextSize(pixelSize);*/
-
         badge_text.setText("6");
         badge_text.setGravity(Gravity.CENTER);
         badge_text.setTextColor(Color.WHITE);
@@ -78,8 +67,7 @@ public class InstaBadge extends LinearLayout {
         outer_container.setBackgroundResource(R.drawable.background);
         outer_container.addView(badge_icon);
         outer_container.addView(badge_text);
-
-
+        
         LinearLayout bottom_arrow = new LinearLayout(context);
         dpAsPixels = (int) (20 * scale + 0.5f);
         LayoutParams arrow_params = new LinearLayout.LayoutParams(dpAsPixels, dpAsPixels, 1f);
@@ -97,7 +85,7 @@ public class InstaBadge extends LinearLayout {
         LayerDrawable layers = (LayerDrawable) bottom_arrow.getBackground();
         RotateDrawable rotate = (RotateDrawable) layers.findDrawableByLayerId(R.id.grad);
         GradientDrawable drawable = (GradientDrawable) rotate.getDrawable();
-        drawable.setColor(Color.parseColor("#26A69A"));;
+        drawable.setColor(Color.parseColor("#26A69A"));
 
     }
 

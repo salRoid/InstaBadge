@@ -26,7 +26,7 @@ public class InstaBadge extends LinearLayout {
     private TextView badge_text;
     private LinearLayout bottom_arrow;
 
-    private String BADGE_COLOR = "026A69A";
+    private String BADGE_COLOR = "#26A69A";
 
     public InstaBadge(Context context) {
         super(context);

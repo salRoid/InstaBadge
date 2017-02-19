@@ -26,7 +26,8 @@ public class InstaBadge extends LinearLayout {
     private TextView badge_text;
     private LinearLayout bottom_arrow;
 
-    private String BADGE_COLOR = "#26A69A";
+    //default badge color
+    private String BADGE_COLOR = "#000000";
 
     public InstaBadge(Context context) {
         super(context);
@@ -61,9 +62,9 @@ public class InstaBadge extends LinearLayout {
     private void initAttributes(TypedArray typedArray) {
 
         String text_color = typedArray.getString(R.styleable.InstaBadge_setColor);
-/*
+
         if (text_color!=null && text_color.length()>0)
-            BADGE_COLOR = Integer.parseInt(text_color);*/
+            BADGE_COLOR = text_color;
 
     }
 
@@ -79,6 +80,15 @@ public class InstaBadge extends LinearLayout {
         setupBadgeBackgroundColors();
 
     }
+
+
+
+    //manually set color of the badge
+
+    public void setBadgeColor(String color){
+        BADGE_COLOR = color;
+    }
+
 
     private void setupBadgeBackgroundColors() {
 

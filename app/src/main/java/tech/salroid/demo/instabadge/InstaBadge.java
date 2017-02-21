@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.RotateDrawable;
+import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.widget.ImageView;
@@ -26,8 +27,12 @@ public class InstaBadge extends LinearLayout {
     private TextView badge_text;
     private LinearLayout bottom_arrow;
 
+
     //default badge color
     private String BADGE_COLOR = "#000000";
+    private String ORIENTATION = "down";
+    private boolean is_auto_hide = false;
+
 
     public InstaBadge(Context context) {
         super(context);
@@ -62,33 +67,60 @@ public class InstaBadge extends LinearLayout {
     private void initAttributes(TypedArray typedArray) {
 
         String text_color = typedArray.getString(R.styleable.InstaBadge_setColor);
+        String my_orientaion = typedArray.getString(R.styleable.InstaBadge_setLayoutOrientation);
+        boolean auto_hide = typedArray.getBoolean(R.styleable.InstaBadge_autohide,false);
 
         if (text_color!=null && text_color.length()>0)
             BADGE_COLOR = text_color;
 
+        if (my_orientaion!=null && my_orientaion.length()>0)
+            ORIENTATION = my_orientaion;
+
+            is_auto_hide = auto_hide;
     }
+
 
     private void init() {
 
         setupMainLayout();
         setupBadgeImage();
         setupBadgeText();
-
         addImageAndText();
+
+        if (ORIENTATION.equals("up"))
+        setupUpperArrow();
+        else if (ORIENTATION.equals("down"))
         setupBottomArrow();
+
+        if (is_auto_hide)
+            hidelayout();
+
 
         setupBadgeBackgroundColors();
 
     }
 
+    private void hidelayout() {
 
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                setVisibility(GONE);
+            }
+        }, 3000);
+
+    }
 
     //manually set color of the badge
-
     public void setBadgeColor(String color){
         BADGE_COLOR = color;
     }
 
+    //manually set the orientation of badge
+
+    public void setLayoutOrientaion(String orientaion){
+        ORIENTATION = orientaion;
+    }
 
     private void setupBadgeBackgroundColors() {
 
@@ -115,6 +147,23 @@ public class InstaBadge extends LinearLayout {
         bottom_arrow.setBackgroundResource(R.drawable.triangle);
         addView(outer_container);
         addView(bottom_arrow);
+
+    }
+
+    private void setupUpperArrow() {
+
+
+        bottom_arrow = new LinearLayout(context);
+        dpAsPixels = (int) (20 * scale + 0.5f);
+        LayoutParams arrow_params = new LinearLayout.LayoutParams(dpAsPixels, dpAsPixels, 1f);
+        arrow_params.gravity = Gravity.CENTER_HORIZONTAL;
+        bottom_arrow.setLayoutParams(arrow_params);
+        bottom_arrow.setOrientation(LinearLayout.HORIZONTAL);
+
+        bottom_arrow.setBackgroundResource(R.drawable.upper_traingle);
+        addView(bottom_arrow);
+        addView(outer_container);
+
 
     }
 

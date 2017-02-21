@@ -96,8 +96,13 @@ public class InstaBadge extends LinearLayout {
             hidelayout();
 
 
+        showbadge();
         setupBadgeBackgroundColors();
 
+    }
+
+    private void showbadge() {
+        setVisibility(VISIBLE);
     }
 
     private void hidelayout() {

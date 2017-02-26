@@ -8,10 +8,12 @@
     tools:context="tech.salroid.demo.instabadge.FragmentOne">
 
     <tech.salroid.demo.instabadge.InstaBadge
-        android:layout_centerInParent="true"
+        android:layout_marginLeft="32dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:setColor="#782564"
+        app:setColor="#E91E63"
+        app:autohide="true"
+        app:setLayoutOrientation="up"
         />
 
 </RelativeLayout>

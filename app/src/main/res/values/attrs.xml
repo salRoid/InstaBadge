@@ -3,5 +3,7 @@
 
     <declare-styleable name="InstaBadge">
         <attr name="setColor" format="string" />
+        <attr name="setLayoutOrientation" format="string"/>
+        <attr name="autohide" format="boolean"/>
     </declare-styleable>
 </resources>

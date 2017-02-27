@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            app:autohide="true"
+            app:autohide="false"
             app:setColor="#F44336"/>
 
     </RelativeLayout>

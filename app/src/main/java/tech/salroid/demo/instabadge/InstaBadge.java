@@ -103,7 +103,7 @@ public class InstaBadge extends LinearLayout {
 
     private void showbadge() {
         setVisibility(VISIBLE);
-    }  //forgreen
+    }
 
     private void hidelayout()  {
 

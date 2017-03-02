@@ -105,15 +105,14 @@ public class InstaBadge extends LinearLayout {
         setVisibility(VISIBLE);
     }  //forgreen
 
-    private void hidelayout() {
+    private void hidelayout()  {
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 setVisibility(GONE);
             }
-        }, 3000); //forgreen
-
+        }, 3000);
     }
 
     //manually set color of the badge

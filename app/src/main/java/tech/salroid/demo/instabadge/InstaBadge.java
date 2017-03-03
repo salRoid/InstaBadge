@@ -79,7 +79,6 @@ public class InstaBadge extends LinearLayout {
             is_auto_hide = auto_hide;
     }
 
-
     private void init() {
 
         setupMainLayout();
@@ -95,9 +94,8 @@ public class InstaBadge extends LinearLayout {
         if (is_auto_hide)
             hidelayout();
 
-
-        showbadge(); //for green
-        setupBadgeBackgroundColors(); //for green
+        showbadge();
+        setupBadgeBackgroundColors();
 
     }
 
@@ -184,7 +182,7 @@ public class InstaBadge extends LinearLayout {
         LayoutParams text_params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1f);
         text_params.setMargins(dpAsPixels, 0, 0, 0);
 
-        badge_text.setText("6");
+        badge_text.setText("5");
         badge_text.setGravity(Gravity.CENTER);
         badge_text.setTextColor(Color.WHITE);
         badge_text.setLayoutParams(text_params);

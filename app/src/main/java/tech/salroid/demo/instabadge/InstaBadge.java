@@ -94,7 +94,7 @@ public class InstaBadge extends LinearLayout {
         if (is_auto_hide)
             hidelayout();
 
-        showbadge();
+        showbadge();//forgreen
         setupBadgeBackgroundColors();
     }
 

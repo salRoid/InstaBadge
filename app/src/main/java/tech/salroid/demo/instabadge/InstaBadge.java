@@ -80,7 +80,6 @@ public class InstaBadge extends LinearLayout {
     }
 
     private void init() {
-
         setupMainLayout();
         setupBadgeImage();
         setupBadgeText();
@@ -94,7 +93,7 @@ public class InstaBadge extends LinearLayout {
         if (is_auto_hide)
             hidelayout();
 
-        showbadge();//forgreen
+        showbadge();
         setupBadgeBackgroundColors();
     }
 

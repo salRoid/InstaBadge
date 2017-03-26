@@ -1,213 +1,59 @@
-/*
 package tech.salroid.demo.instabadge;
 
 import android.graphics.Point;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
-
 
 
 class CoordinatesFinder {
 
+    static String TAG = CoordinatesFinder.class.getSimpleName();
 
-    static Point getCoordinates(final TextView tipView, InstaBadge instaBadge) {
+    static Point getCoordinates(final View instaBadgeView, InstaBadge instaBadge) {
 
         Point point = new Point();
         final Coordinates anchorViewCoordinates = new Coordinates(instaBadge.getAnchorView());
         final Coordinates rootCoordinates = new Coordinates(instaBadge.getRootView());
 
-        tipView.measure(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        instaBadgeView.measure(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-        switch (instaBadge.getPosition()) {
-            case InstaBadge.POSITION_ABOVE:
-                point = getPositionAbove(tipView, instaBadge,
-                        anchorViewCoordinates, rootCoordinates);
-                break;
-            case InstaBadge.POSITION_BELOW:
-                point = getPositionBelow(tipView, instaBadge,
-                        anchorViewCoordinates, rootCoordinates);
-                break;
-        }
+        point = getPositionAbove(instaBadgeView, instaBadge,
+                anchorViewCoordinates, rootCoordinates);
 
-        // add user defined offset values
-        point.x += UiUtils.isRtl() ? -instaBadge.getOffsetX() : instaBadge.getOffsetX();
+        Log.d(TAG, "getCoordinates: object "+ point);
+
+        point.x += instaBadge.getOffsetX();
         point.y += instaBadge.getOffsetY();
 
-        // coordinates retrieved are relative to 0,0 of the root layout
-        // added view to root is subject to root padding
-        // we need to subtract the top and left padding of root from coordinates. to adjust
-        // top left tip coordinates
         point.x -= instaBadge.getRootView().getPaddingLeft();
         point.y -= instaBadge.getRootView().getPaddingTop();
 
-        return point;
+        point.x =600;
+        point.y= 1350;
 
+        Log.d(TAG, "getCoordinates: final "+ point);
+
+        return point;
     }
-*/
-/*
-    private static Point getPositionRightTo(TextView tipView, ToolTip toolTip, Coordinates anchorViewCoordinates, Coordinates rootLocation) {
+
+    private static Point getPositionAbove(View instaBadgeView, InstaBadge instaBadge, Coordinates anchorViewCoordinates, Coordinates rootCoordinates) {
         Point point = new Point();
-        point.x = anchorViewCoordinates.right;
-        AdjustRightToOutOfBounds(tipView, toolTip.getRootView(), point, anchorViewCoordinates, rootLocation);
-        point.y = anchorViewCoordinates.top + getYCenteringOffset(tipView, toolTip);
+        point.x = anchorViewCoordinates.left + getXOffset(instaBadgeView, instaBadge);
+        point.y = anchorViewCoordinates.top - instaBadgeView.getMeasuredHeight();
         return point;
-    }
 
-    private static Point getPositionLeftTo(TextView tipView, ToolTip toolTip, Coordinates anchorViewCoordinates, Coordinates rootLocation) {
-        Point point = new Point();
-        point.x = anchorViewCoordinates.left - tipView.getMeasuredWidth();
-        AdjustLeftToOutOfBounds(tipView, toolTip.getRootView(), point, anchorViewCoordinates, rootLocation);
-        point.y = anchorViewCoordinates.top + getYCenteringOffset(tipView, toolTip);
-        return point;
-    }*//*
-
-
- */
-/*   private static Point getPositionBelow(TextView tipView, ToolTip toolTip, Coordinates anchorViewCoordinates, Coordinates rootLocation) {
-        Point point = new Point();
-        point.x = anchorViewCoordinates.left + getXOffset(tipView, toolTip);
-        if (toolTip.alignedCenter()) {
-            AdjustHorizontalCenteredOutOfBounds(tipView, toolTip.getRootView(), point, rootLocation);
-        } else if (toolTip.alignedLeft()){
-            AdjustHorizontalLeftAlignmentOutOfBounds(tipView, toolTip.getRootView(), point, anchorViewCoordinates, rootLocation);
-        } else if (toolTip.alignedRight()){
-            AdjustHorizotalRightAlignmentOutOfBounds(tipView, toolTip.getRootView(), point, anchorViewCoordinates, rootLocation);
-        }
-        point.y = anchorViewCoordinates.bottom;
-        return point;
-    }*//*
-
-
-    */
-/*private static Point getPositionAbove(TextView tipView, ToolTip toolTip,
-                                          Coordinates anchorViewCoordinates, Coordinates rootLocation) {
-        Point point = new Point();
-        point.x = anchorViewCoordinates.left + getXOffset(tipView, toolTip);
-        if (toolTip.alignedCenter()) {
-            AdjustHorizontalCenteredOutOfBounds(tipView, toolTip.getRootView(), point, rootLocation);
-        } else if (toolTip.alignedLeft()){
-            AdjustHorizontalLeftAlignmentOutOfBounds(tipView, toolTip.getRootView(), point, anchorViewCoordinates, rootLocation);
-        } else if (toolTip.alignedRight()){
-            AdjustHorizotalRightAlignmentOutOfBounds(tipView, toolTip.getRootView(), point, anchorViewCoordinates, rootLocation);
-        }
-        point.y = anchorViewCoordinates.top - tipView.getMeasuredHeight();
-        return point;
-    }*//*
-
-
-   */
-/* private static void AdjustRightToOutOfBounds(TextView tipView, ViewGroup root, Point point, Coordinates anchorViewCoordinates, Coordinates rootLocation) {
-        ViewGroup.LayoutParams params = tipView.getLayoutParams();
-        int availableSpace = rootLocation.right - root.getPaddingRight() - anchorViewCoordinates.right;
-        if (point.x + tipView.getMeasuredWidth() > rootLocation.right - root.getPaddingRight()){
-            params.width = availableSpace;
-            params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-            tipView.setLayoutParams(params);
-            measureViewWithFixedWidth(tipView, params.width);
-        }
-    }*//*
-
-
-   */
-/* private static void AdjustLeftToOutOfBounds(TextView tipView, ViewGroup root, Point point, Coordinates anchorViewCoordinates, Coordinates rootLocation) {
-        ViewGroup.LayoutParams params = tipView.getLayoutParams();
-        int rootLeft = rootLocation.left + root.getPaddingLeft();
-        if (point.x < rootLeft){
-            int availableSpace = anchorViewCoordinates.left - rootLeft;
-            point.x = rootLeft;
-            params.width = availableSpace;
-            params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-            tipView.setLayoutParams(params);
-            measureViewWithFixedWidth(tipView, params.width);
-        }
-    }*//*
-
-*/
-/*
-    private static void AdjustHorizotalRightAlignmentOutOfBounds(TextView tipView, ViewGroup root,
-                                                                 Point point, Coordinates anchorViewCoordinates,
-                                                                 Coordinates rootLocation) {
-        ViewGroup.LayoutParams params = tipView.getLayoutParams();
-        int rootLeft = rootLocation.left + root.getPaddingLeft();
-        if (point.x < rootLeft){
-            int availableSpace = anchorViewCoordinates.right - rootLeft;
-            point.x = rootLeft;
-            params.width = availableSpace;
-            params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-            tipView.setLayoutParams(params);
-            measureViewWithFixedWidth(tipView, params.width);
-        }
-    }*//*
-
-
-   */
-/* private static void AdjustHorizontalLeftAlignmentOutOfBounds(TextView tipView, ViewGroup root,
-                                                                 Point point, Coordinates anchorViewCoordinates,
-                                                                 Coordinates rootLocation) {
-        ViewGroup.LayoutParams params = tipView.getLayoutParams();
-        int rootRight = rootLocation.right - root.getPaddingRight();
-        if (point.x + tipView.getMeasuredWidth() > rootRight){
-            params.width = rootRight - anchorViewCoordinates.left;
-            params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-            tipView.setLayoutParams(params);
-            measureViewWithFixedWidth(tipView, params.width);
-        }
-    }
-*//*
-
-   */
-/* private static void AdjustHorizontalCenteredOutOfBounds(TextView tipView, ViewGroup root,
-                                                            Point point, Coordinates rootLocation) {
-        ViewGroup.LayoutParams params = tipView.getLayoutParams();
-        int rootWidth = root.getWidth() - root.getPaddingLeft() - root.getPaddingRight();
-        if (tipView.getMeasuredWidth() > rootWidth) {
-            point.x = rootLocation.left + root.getPaddingLeft();
-            params.width = rootWidth;
-            params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-            tipView.setLayoutParams(params);
-            measureViewWithFixedWidth(tipView, rootWidth);
-        }
     }
 
 
-    private static void measureViewWithFixedWidth(TextView tipView, int width) {
-        tipView.measure(View.MeasureSpec.makeMeasureSpec(width,
-                View.MeasureSpec.EXACTLY), ViewGroup.LayoutParams.WRAP_CONTENT);
-    }
-    *//*
-
-
-*/
-/*    private static int getXOffset(View tipView, ToolTip toolTip) {
+    private static int getXOffset(View instaBadgeView , InstaBadge instaBadge) {
         int offset;
-
-        switch (toolTip.getAlign()) {
-            case ToolTip.ALIGN_CENTER:
-                offset = ((toolTip.getAnchorView().getWidth() - tipView.getMeasuredWidth()) / 2);
-                break;
-            case ToolTip.ALIGN_LEFT:
-                offset = 0;
-                break;
-            case ToolTip.ALIGN_RIGHT:
-                offset = toolTip.getAnchorView().getWidth() - tipView.getMeasuredWidth();
-                break;
-            default:
-                offset = 0;
-                break;
-        }
+        offset = ((instaBadge.getAnchorView().getWidth() - instaBadgeView.getMeasuredWidth()) / 2);
 
         return offset;
-    }*//*
+        }
 
-
-
-    */
-/*private static int getYCenteringOffset(View tipView, ToolTip toolTip) {
-        return (toolTip.getAnchorView().getHeight() - tipView.getMeasuredHeight()) / 2;
+    private static int getYCenteringOffset(View instaBadgeView, InstaBadge instaBadge) {
+        return (instaBadge.getAnchorView().getHeight() - instaBadgeView.getMeasuredHeight()) / 2;
     }
-*//*
-
 }
-*/

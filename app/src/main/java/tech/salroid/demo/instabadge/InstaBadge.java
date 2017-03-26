@@ -42,11 +42,11 @@ public class InstaBadge {
         return rootView;
     }
 
-    public int getmOffsetX() {
+    public int getOffsetX() {
         return mOffsetX;
     }
 
-    public int getmOffsetY() {
+    public int getOffsetY() {
         return mOffsetY;
     }
 

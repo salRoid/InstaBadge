@@ -1,5 +1,6 @@
 package tech.salroid.demo.instabadge;
 
+import android.graphics.Point;
 import android.util.Log;
 import android.view.View;
 
@@ -39,7 +40,22 @@ public class InstaBadgeManager {
 
         instaBadge.getRootView().addView(instaBadgeView);
 
+        Point p = CoordinatesFinder.getCoordinates(instaBadgeView,instaBadge);
+
+        moveBadgeToCorrectPosition(instaBadgeView, p);
+
+        int anchorViewId = instaBadge.getAnchorView().getId();
+        instaBadgeView.setTag(anchorViewId);
+
         return instaBadgeView;
+    }
+
+    private void moveBadgeToCorrectPosition(InstaBadgeView instaBadgeView, Point p) {
+        Coordinates coordinates = new Coordinates(instaBadgeView);
+        int translationX = p.x - coordinates.left;
+        int translationY = p.y - coordinates.top;
+        instaBadgeView.setTranslationX(!UiUtils.isRtl() ? translationX : -translationX);
+        instaBadgeView.setTranslationY(translationY);
     }
 
 

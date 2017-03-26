@@ -36,45 +36,6 @@ public class InstaBadgeView extends LinearLayout {
         init();
     }
 
-  /*  public InstaBadgeView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        this.context = context;
-
-        TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs,
-                R.styleable.InstaBadgeView, 0, 0);
-        initAttributes(typedArray);
-        typedArray.recycle();
-
-        init();
-    }*/
-
-   /* public InstaBadgeView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        this.context = context;
-
-        TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs,
-                R.styleable.InstaBadgeView, 0, 0);
-        initAttributes(typedArray);
-        typedArray.recycle();
-
-        init();
-    }*/
-
-  /*  private void initAttributes(TypedArray typedArray) {
-
-        String text_color = typedArray.getString(R.styleable.InstaBadgeView_setColor);
-        String my_orientaion = typedArray.getString(R.styleable.InstaBadgeView_setLayoutOrientation);
-        boolean auto_hide = typedArray.getBoolean(R.styleable.InstaBadgeView_autohide, false);
-
-        if (text_color != null && text_color.length() > 0)
-            BADGE_COLOR = text_color;
-
-        if (my_orientaion != null && my_orientaion.length() > 0)
-            ORIENTATION = my_orientaion;
-
-        IS_AUOTO_HIDE = auto_hide;
-    }*/
-
     private void init() {
 
         setupMainLayout();
@@ -82,14 +43,12 @@ public class InstaBadgeView extends LinearLayout {
         setupBadgeText();
         addImageAndText();
 
-        //setting up badge layout
 
         if (instaBadge.getArrow_postion().equals("up"))
             setupUpperArrow();
         else if (instaBadge.getArrow_postion().equals("down"))
             setupBottomArrow();
 
-        // auto hide check default 3 seconds
         if (instaBadge.auto_hide())
             hidelayout();
 
@@ -111,20 +70,6 @@ public class InstaBadgeView extends LinearLayout {
         }, 3000);
     }
 
-  /*  //manually set color of the badge
-    public void setBadgeColor(String color) {
-        BADGE_COLOR = color;
-    }
-
-    public void setAutoHidden(boolean hide) {
-        IS_AUOTO_HIDE = hide;
-    }
-
-    //manually set the orientation of badge
-    public void setLayoutOrientaion(String orientaion) {
-
-        ORIENTATION = orientaion;
-    }*/
 
     private void setupBadgeBackgroundColors(String BADGE_COLOR) {
 
@@ -219,6 +164,5 @@ public class InstaBadgeView extends LinearLayout {
         outer_container.setPadding(dpAsPixels, dpAsPixels, dpAsPixels, dpAsPixels);
 
     }
-
 
 }

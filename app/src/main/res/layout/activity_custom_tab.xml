@@ -8,16 +8,6 @@
     android:background="#e0e0e0"
     tools:context="tech.salroid.demo.instabadge.CustomTab">
 
-    <RelativeLayout
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/customtab">
-
-
-    </RelativeLayout>
-
-
     <LinearLayout
         android:id="@+id/customtab"
         android:layout_width="match_parent"

@@ -2,6 +2,7 @@ package tech.salroid.demo.instabadge;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -9,6 +10,7 @@ import android.widget.RelativeLayout;
 public class CustomTab extends AppCompatActivity {
 
     ImageView home,search,fav,user;
+    String TAG = CustomTab.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +35,9 @@ public class CustomTab extends AppCompatActivity {
             home.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    final Coordinates anchorViewCoordinates = new Coordinates(home);
 
+                    Log.d(TAG, "onClick home: "+anchorViewCoordinates.left+" "+anchorViewCoordinates.top);
                 }
             });
 
@@ -48,6 +52,9 @@ public class CustomTab extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
 
+                    final Coordinates anchorViewCoordinates = new Coordinates(fav);
+
+                    Log.d(TAG, "onClick fav: "+anchorViewCoordinates.left+" "+anchorViewCoordinates.top);
                 }
             });
 

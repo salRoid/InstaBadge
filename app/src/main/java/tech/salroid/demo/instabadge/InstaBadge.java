@@ -59,7 +59,7 @@ public class InstaBadge {
     }
 
     public boolean auto_hide() {
-        return !auto_hideable;
+        return auto_hideable;
     }
 
 
@@ -106,7 +106,7 @@ public class InstaBadge {
         }
 
         public Builder setAuto_hideable(boolean value) {
-            this.auto_hideable = auto_hideable;
+            auto_hideable = value;
             return this;
         }
 

@@ -35,7 +35,11 @@ public class InstaBadgeManager {
             return null;
         }
 
-        return new InstaBadgeView(instaBadge.getContext(), instaBadge);
+        InstaBadgeView instaBadgeView = new InstaBadgeView(instaBadge.getContext(), instaBadge);
+
+        instaBadge.getRootView().addView(instaBadgeView);
+
+        return instaBadgeView;
     }
 
 

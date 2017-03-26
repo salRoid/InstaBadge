@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <declare-styleable name="InstaBadge">
+    <declare-styleable name="InstaBadgeView">
         <attr name="setColor" format="string" />
         <attr name="setLayoutOrientation" format="string"/>
         <attr name="autohide" format="boolean"/>

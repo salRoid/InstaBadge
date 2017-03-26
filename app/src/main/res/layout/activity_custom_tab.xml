@@ -9,18 +9,11 @@
     tools:context="tech.salroid.demo.instabadge.CustomTab">
 
     <RelativeLayout
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/customtab">
 
-        <tech.salroid.demo.instabadge.InstaBadge
-            android:layout_marginRight="110dp"
-            android:layout_alignParentRight="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            app:autohide="false"
-            app:setColor="#F44336"/>
 
     </RelativeLayout>
 

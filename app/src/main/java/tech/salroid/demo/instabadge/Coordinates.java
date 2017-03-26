@@ -17,7 +17,6 @@ public class Coordinates {
         view.getLocationOnScreen(location);
         left = location[0];
         right = left + view.getWidth();
-        ;
         top = location[1];
         bottom = top + view.getHeight();
     }

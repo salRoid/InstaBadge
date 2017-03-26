@@ -1,8 +1,5 @@
+/*
 package tech.salroid.demo.instabadge;
-
-/**
- * Created by salroid on 3/26/2017.
- */
 
 import android.graphics.Point;
 import android.view.View;
@@ -10,50 +7,46 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 
+
+
 class CoordinatesFinder {
 
 
-    static Point getCoordinates(final TextView tipView, ToolTip tooltip) {
+    static Point getCoordinates(final TextView tipView, InstaBadge instaBadge) {
+
         Point point = new Point();
-        final Coordinates anchorViewCoordinates = new Coordinates(tooltip.getAnchorView());
-        final Coordinates rootCoordinates = new Coordinates(tooltip.getRootView());
+        final Coordinates anchorViewCoordinates = new Coordinates(instaBadge.getAnchorView());
+        final Coordinates rootCoordinates = new Coordinates(instaBadge.getRootView());
 
         tipView.measure(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-        switch (tooltip.getPosition()) {
-            case ToolTip.POSITION_ABOVE:
-                point = getPositionAbove(tipView, tooltip,
+        switch (instaBadge.getPosition()) {
+            case InstaBadge.POSITION_ABOVE:
+                point = getPositionAbove(tipView, instaBadge,
                         anchorViewCoordinates, rootCoordinates);
                 break;
-            case ToolTip.POSITION_BELOW:
-                point = getPositionBelow(tipView, tooltip,
-                        anchorViewCoordinates, rootCoordinates);
-                break;
-            case ToolTip.POSITION_LEFT_TO:
-                point = getPositionLeftTo(tipView, tooltip,
-                        anchorViewCoordinates, rootCoordinates);
-                break;
-            case ToolTip.POSITION_RIGHT_TO:
-                point = getPositionRightTo(tipView, tooltip,
+            case InstaBadge.POSITION_BELOW:
+                point = getPositionBelow(tipView, instaBadge,
                         anchorViewCoordinates, rootCoordinates);
                 break;
         }
 
         // add user defined offset values
-        point.x += UiUtils.isRtl() ? -tooltip.getOffsetX() : tooltip.getOffsetX();
-        point.y += tooltip.getOffsetY();
+        point.x += UiUtils.isRtl() ? -instaBadge.getOffsetX() : instaBadge.getOffsetX();
+        point.y += instaBadge.getOffsetY();
 
         // coordinates retrieved are relative to 0,0 of the root layout
         // added view to root is subject to root padding
         // we need to subtract the top and left padding of root from coordinates. to adjust
         // top left tip coordinates
-        point.x -= tooltip.getRootView().getPaddingLeft();
-        point.y -= tooltip.getRootView().getPaddingTop();
+        point.x -= instaBadge.getRootView().getPaddingLeft();
+        point.y -= instaBadge.getRootView().getPaddingTop();
 
         return point;
 
     }
-
+*/
+/*
     private static Point getPositionRightTo(TextView tipView, ToolTip toolTip, Coordinates anchorViewCoordinates, Coordinates rootLocation) {
         Point point = new Point();
         point.x = anchorViewCoordinates.right;
@@ -68,9 +61,11 @@ class CoordinatesFinder {
         AdjustLeftToOutOfBounds(tipView, toolTip.getRootView(), point, anchorViewCoordinates, rootLocation);
         point.y = anchorViewCoordinates.top + getYCenteringOffset(tipView, toolTip);
         return point;
-    }
+    }*//*
 
-    private static Point getPositionBelow(TextView tipView, ToolTip toolTip, Coordinates anchorViewCoordinates, Coordinates rootLocation) {
+
+ */
+/*   private static Point getPositionBelow(TextView tipView, ToolTip toolTip, Coordinates anchorViewCoordinates, Coordinates rootLocation) {
         Point point = new Point();
         point.x = anchorViewCoordinates.left + getXOffset(tipView, toolTip);
         if (toolTip.alignedCenter()) {
@@ -82,9 +77,11 @@ class CoordinatesFinder {
         }
         point.y = anchorViewCoordinates.bottom;
         return point;
-    }
+    }*//*
 
-    private static Point getPositionAbove(TextView tipView, ToolTip toolTip,
+
+    */
+/*private static Point getPositionAbove(TextView tipView, ToolTip toolTip,
                                           Coordinates anchorViewCoordinates, Coordinates rootLocation) {
         Point point = new Point();
         point.x = anchorViewCoordinates.left + getXOffset(tipView, toolTip);
@@ -97,9 +94,11 @@ class CoordinatesFinder {
         }
         point.y = anchorViewCoordinates.top - tipView.getMeasuredHeight();
         return point;
-    }
+    }*//*
 
-    private static void AdjustRightToOutOfBounds(TextView tipView, ViewGroup root, Point point, Coordinates anchorViewCoordinates, Coordinates rootLocation) {
+
+   */
+/* private static void AdjustRightToOutOfBounds(TextView tipView, ViewGroup root, Point point, Coordinates anchorViewCoordinates, Coordinates rootLocation) {
         ViewGroup.LayoutParams params = tipView.getLayoutParams();
         int availableSpace = rootLocation.right - root.getPaddingRight() - anchorViewCoordinates.right;
         if (point.x + tipView.getMeasuredWidth() > rootLocation.right - root.getPaddingRight()){
@@ -108,9 +107,11 @@ class CoordinatesFinder {
             tipView.setLayoutParams(params);
             measureViewWithFixedWidth(tipView, params.width);
         }
-    }
+    }*//*
 
-    private static void AdjustLeftToOutOfBounds(TextView tipView, ViewGroup root, Point point, Coordinates anchorViewCoordinates, Coordinates rootLocation) {
+
+   */
+/* private static void AdjustLeftToOutOfBounds(TextView tipView, ViewGroup root, Point point, Coordinates anchorViewCoordinates, Coordinates rootLocation) {
         ViewGroup.LayoutParams params = tipView.getLayoutParams();
         int rootLeft = rootLocation.left + root.getPaddingLeft();
         if (point.x < rootLeft){
@@ -121,8 +122,10 @@ class CoordinatesFinder {
             tipView.setLayoutParams(params);
             measureViewWithFixedWidth(tipView, params.width);
         }
-    }
+    }*//*
 
+*/
+/*
     private static void AdjustHorizotalRightAlignmentOutOfBounds(TextView tipView, ViewGroup root,
                                                                  Point point, Coordinates anchorViewCoordinates,
                                                                  Coordinates rootLocation) {
@@ -136,9 +139,11 @@ class CoordinatesFinder {
             tipView.setLayoutParams(params);
             measureViewWithFixedWidth(tipView, params.width);
         }
-    }
+    }*//*
 
-    private static void AdjustHorizontalLeftAlignmentOutOfBounds(TextView tipView, ViewGroup root,
+
+   */
+/* private static void AdjustHorizontalLeftAlignmentOutOfBounds(TextView tipView, ViewGroup root,
                                                                  Point point, Coordinates anchorViewCoordinates,
                                                                  Coordinates rootLocation) {
         ViewGroup.LayoutParams params = tipView.getLayoutParams();
@@ -150,8 +155,10 @@ class CoordinatesFinder {
             measureViewWithFixedWidth(tipView, params.width);
         }
     }
+*//*
 
-    private static void AdjustHorizontalCenteredOutOfBounds(TextView tipView, ViewGroup root,
+   */
+/* private static void AdjustHorizontalCenteredOutOfBounds(TextView tipView, ViewGroup root,
                                                             Point point, Coordinates rootLocation) {
         ViewGroup.LayoutParams params = tipView.getLayoutParams();
         int rootWidth = root.getWidth() - root.getPaddingLeft() - root.getPaddingRight();
@@ -169,13 +176,11 @@ class CoordinatesFinder {
         tipView.measure(View.MeasureSpec.makeMeasureSpec(width,
                 View.MeasureSpec.EXACTLY), ViewGroup.LayoutParams.WRAP_CONTENT);
     }
+    *//*
 
-    /**
-     * calculate the amount of movement need to be taken inorder to align tip
-     * on X axis according to "align" parameter
-     * @return int
-     */
-    private static int getXOffset(View tipView, ToolTip toolTip) {
+
+*/
+/*    private static int getXOffset(View tipView, ToolTip toolTip) {
         int offset;
 
         switch (toolTip.getAlign()) {
@@ -194,15 +199,15 @@ class CoordinatesFinder {
         }
 
         return offset;
-    }
+    }*//*
 
-    /**
-     * calculate the amount of movement need to be taken inorder to center tip
-     * on Y axis
-     * @return int
-     */
-    private static int getYCenteringOffset(View tipView, ToolTip toolTip) {
+
+
+    */
+/*private static int getYCenteringOffset(View tipView, ToolTip toolTip) {
         return (toolTip.getAnchorView().getHeight() - tipView.getMeasuredHeight()) / 2;
     }
+*//*
 
 }
+*/

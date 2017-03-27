@@ -8,6 +8,17 @@
     android:background="#e0e0e0"
     tools:context="tech.salroid.demo.instabadge.CustomTab">
 
+    <ImageView
+        android:tag="fav"
+        android:id="@+id/my_love"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:src="@drawable/hearts" />
+
+
+
     <LinearLayout
         android:id="@+id/customtab"
         android:layout_width="match_parent"
@@ -35,6 +46,7 @@
             android:src="@drawable/ic_search_black_24dp" />
 
         <ImageView
+            android:tag="fav"
             android:id="@+id/fav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

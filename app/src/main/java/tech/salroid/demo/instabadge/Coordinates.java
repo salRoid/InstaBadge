@@ -13,6 +13,7 @@ public class Coordinates {
     int bottom;
 
     public Coordinates(View view) {
+
         int[] location = new int[2];
         view.getLocationOnScreen(location);
         left = location[0];

@@ -9,7 +9,7 @@ import android.widget.RelativeLayout;
 
 public class CustomTab extends AppCompatActivity {
 
-    ImageView home,search,fav,user;
+    ImageView home,search,fav,user,love;
     String TAG = CustomTab.class.getSimpleName();
 
     @Override
@@ -18,19 +18,20 @@ public class CustomTab extends AppCompatActivity {
         setContentView(R.layout.activity_custom_tab);
 
 
-
             RelativeLayout main_content = (RelativeLayout) findViewById(R.id.activity_custom_tab);
             home = (ImageView) findViewById(R.id.home);
             search =(ImageView) findViewById(R.id.search);
             fav = (ImageView) findViewById(R.id.fav);
             user = (ImageView) findViewById(R.id.perm);
+            love = (ImageView) findViewById(R.id.my_love);
 
-            InstaBadgeManager instaBadgeManager = new InstaBadgeManager();
-            InstaBadge.Builder builder = new InstaBadge.Builder(this,fav,main_content);
+            /*InstaBadgeManager instaBadgeManager = new InstaBadgeManager();
+            InstaBadge.Builder builder = new InstaBadge.Builder(this,love,main_content);
             builder.setBadgeColor("#F44336");
             builder.setAuto_hideable(false);
+            builder.setArrow_postion("down");
 
-            instaBadgeManager.show(builder.build());
+            instaBadgeManager.show(builder.build());*/
 
             home.setOnClickListener(new View.OnClickListener() {
                 @Override

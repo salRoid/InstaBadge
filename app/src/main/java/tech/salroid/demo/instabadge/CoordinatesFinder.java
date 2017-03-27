@@ -21,39 +21,33 @@ class CoordinatesFinder {
         point = getPositionAbove(instaBadgeView, instaBadge,
                 anchorViewCoordinates, rootCoordinates);
 
-        Log.d(TAG, "getCoordinates: object "+ point);
-
         point.x += instaBadge.getOffsetX();
         point.y += instaBadge.getOffsetY();
 
-        point.x -= instaBadge.getRootView().getPaddingLeft();
-        point.y -= instaBadge.getRootView().getPaddingTop();
+         point.x -= instaBadge.getRootView().getPaddingLeft();
+         point.y -= instaBadge.getRootView().getPaddingTop();
 
-        point.x =600;
-        point.y= 1350;
+         // manual co - ordinates
+        point.x = 550;
+        point.y = 1350;
 
-        Log.d(TAG, "getCoordinates: final "+ point);
 
         return point;
     }
 
     private static Point getPositionAbove(View instaBadgeView, InstaBadge instaBadge, Coordinates anchorViewCoordinates, Coordinates rootCoordinates) {
         Point point = new Point();
-        point.x = anchorViewCoordinates.left + getXOffset(instaBadgeView, instaBadge);
+        point.x = anchorViewCoordinates.left + getXOffset(instaBadge);
         point.y = anchorViewCoordinates.top - instaBadgeView.getMeasuredHeight();
         return point;
 
     }
 
-
-    private static int getXOffset(View instaBadgeView , InstaBadge instaBadge) {
+    private static int getXOffset(InstaBadge instaBadge) {
         int offset;
-        offset = ((instaBadge.getAnchorView().getWidth() - instaBadgeView.getMeasuredWidth()) / 2);
-
+        offset = ((instaBadge.getAnchorView().getWidth()) / 2);
         return offset;
-        }
-
-    private static int getYCenteringOffset(View instaBadgeView, InstaBadge instaBadge) {
-        return (instaBadge.getAnchorView().getHeight() - instaBadgeView.getMeasuredHeight()) / 2;
     }
+
+
 }

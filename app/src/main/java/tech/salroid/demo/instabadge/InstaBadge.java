@@ -1,14 +1,18 @@
 package tech.salroid.demo.instabadge;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+
 
 /**
  * Created by salroid on 3/26/2017.
  */
 
 public class InstaBadge {
+
+   static String TAG = InstaBadge.class.getSimpleName();
 
     private Context context;
     private View anchorView;
@@ -75,6 +79,7 @@ public class InstaBadge {
         private boolean auto_hideable;
 
         public Builder(Context context, View anchorView, ViewGroup rootView) {
+
             this.context = context;
             this.anchorView = anchorView;
             this.rootView = rootView;
@@ -84,6 +89,8 @@ public class InstaBadge {
             arrow_postion = "down";
             auto_hideable = false;
         }
+
+
 
         public Builder setmOffsetX(int OffsetX) {
             mOffsetX = OffsetX;
@@ -97,6 +104,10 @@ public class InstaBadge {
 
         public Builder setBadgeColor(String bg_color) {
             badgeColor = bg_color;
+
+            Coordinates anchorViewCoordinates = new Coordinates(this.anchorView);
+            Log.d(TAG, "Builder: "+anchorViewCoordinates.left+" "+anchorViewCoordinates.right);
+
             return this;
         }
 

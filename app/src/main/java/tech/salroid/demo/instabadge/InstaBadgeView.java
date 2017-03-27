@@ -8,7 +8,9 @@ import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.RotateDrawable;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.Gravity;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -18,6 +20,8 @@ import android.widget.TextView;
  */
 
 public class InstaBadgeView extends LinearLayout {
+
+    String TAG = InstaBadgeView.class.getSimpleName();
 
     private Context context;
     private int dpAsPixels;
@@ -87,14 +91,14 @@ public class InstaBadgeView extends LinearLayout {
 
         bottom_arrow = new LinearLayout(context);
         dpAsPixels = (int) (20 * scale + 0.5f);
-        LayoutParams arrow_params = new LinearLayout.LayoutParams(dpAsPixels, dpAsPixels, 1f);
+        LayoutParams arrow_params = new LinearLayout.LayoutParams(dpAsPixels, dpAsPixels);
         arrow_params.gravity = Gravity.CENTER_HORIZONTAL;
         bottom_arrow.setLayoutParams(arrow_params);
         bottom_arrow.setOrientation(LinearLayout.HORIZONTAL);
 
         bottom_arrow.setBackgroundResource(R.drawable.triangle);
         addView(outer_container);
-        //addView(bottom_arrow);
+        addView(bottom_arrow);
 
     }
 
@@ -108,9 +112,19 @@ public class InstaBadgeView extends LinearLayout {
         bottom_arrow.setOrientation(LinearLayout.HORIZONTAL);
 
         bottom_arrow.setBackgroundResource(R.drawable.upper_traingle);
-       // addView(bottom_arrow);
+
+       addView(bottom_arrow);
+       // Log.d(TAG, "setupUpperArrow: "+bottom_arrow.getLayoutParams().height);
         addView(outer_container);
 
+        /*bottom_arrow.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                bottom_arrow.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                //view.getHeight(); //height is ready
+                Log.d(TAG, "setupUpperArrow: "+bottom_arrow.getMeasuredHeight());
+            }
+        });*/
 
     }
 

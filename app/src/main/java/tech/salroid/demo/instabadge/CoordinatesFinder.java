@@ -45,16 +45,17 @@ class CoordinatesFinder {
         point.x = anchorViewCoordinates.left + getXOffset(instaBadgeView, instaBadge);
         point.y = anchorViewCoordinates.bottom;
 
-        Log.d(TAG, "getPositionBelow: "+anchorViewCoordinates.bottom);
+        Log.d(TAG, "getPositionBelow: "+instaBadgeView.getMeasuredHeight());
 
         return point;
     }
 
     private static Point getPositionAbove(View instaBadgeView, InstaBadge instaBadge, Coordinates anchorViewCoordinates, Coordinates rootCoordinates) {
+        final DummyArrow dummyArrow = new DummyArrow(instaBadge.getContext());
         Point point = new Point();
         point.x = anchorViewCoordinates.left + getXOffset(instaBadgeView,instaBadge);
-        point.y = anchorViewCoordinates.top - instaBadgeView.getMeasuredHeight();
-        Log.d(TAG, "getPositionAbove: "+ point.y);
+        point.y = anchorViewCoordinates.top - instaBadgeView.getMeasuredHeight()-dummyArrow.value;
+        Log.d(TAG, "getPositionAbove: "+ dummyArrow.value);
         return point;
 
     }
@@ -82,6 +83,5 @@ class CoordinatesFinder {
         offset = ((instaBadge.getAnchorView().getWidth() - instaBadgeView.getMeasuredWidth()) / 2);
         return offset;
     }
-
 
 }

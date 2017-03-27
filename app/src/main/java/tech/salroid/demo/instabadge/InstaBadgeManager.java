@@ -46,6 +46,7 @@ public class InstaBadgeManager {
 
         moveBadgeToCorrectPosition(instaBadgeView, p);
 
+
         int anchorViewId = instaBadge.getAnchorView().getId();
         instaBadgeView.setTag(anchorViewId);
 

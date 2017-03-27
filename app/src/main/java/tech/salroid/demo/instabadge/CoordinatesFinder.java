@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 class CoordinatesFinder {
 
+    static String TAG = CoordinatesFinder.class.getSimpleName();
 
     static Point getCoordinates(final View instaBadgeView, InstaBadge instaBadge) {
 
@@ -17,15 +18,34 @@ class CoordinatesFinder {
 
         instaBadgeView.measure(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-        point = getPositionAbove(instaBadgeView, instaBadge,
-                anchorViewCoordinates, rootCoordinates);
+        switch (instaBadge.getArrow_postion()) {
+            case 0:
+                point = getPositionAbove(instaBadgeView, instaBadge,
+                        anchorViewCoordinates, rootCoordinates);
+                break;
+            case 1:
+                point = getPositionBelow(instaBadgeView, instaBadge,
+                        anchorViewCoordinates, rootCoordinates);
+                break;
+        }
 
         point.x += instaBadge.getOffsetX();
         point.y += instaBadge.getOffsetY();
 
          point.x -= instaBadge.getRootView().getPaddingLeft();
         AdjustHorizontalCenteredOutOfBounds(instaBadgeView, instaBadge.getRootView(), point, rootCoordinates);
-         point.y -= instaBadge.getRootView().getPaddingTop();
+        point.y -= instaBadge.getRootView().getPaddingTop();
+
+        return point;
+    }
+
+    private static Point getPositionBelow(View instaBadgeView, InstaBadge instaBadge, Coordinates anchorViewCoordinates, Coordinates rootCoordinates) {
+
+        Point point = new Point();
+        point.x = anchorViewCoordinates.left + getXOffset(instaBadgeView, instaBadge);
+        point.y = anchorViewCoordinates.bottom;
+
+        Log.d(TAG, "getPositionBelow: "+anchorViewCoordinates.bottom);
 
         return point;
     }
@@ -34,6 +54,7 @@ class CoordinatesFinder {
         Point point = new Point();
         point.x = anchorViewCoordinates.left + getXOffset(instaBadgeView,instaBadge);
         point.y = anchorViewCoordinates.top - instaBadgeView.getMeasuredHeight();
+        Log.d(TAG, "getPositionAbove: "+ point.y);
         return point;
 
     }

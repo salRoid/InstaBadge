@@ -12,7 +12,7 @@ public class CustomTab extends AppCompatActivity {
     ImageView home, search, fav, user, love;
     String TAG = CustomTab.class.getSimpleName();
     RelativeLayout main_content;
-    InstaBadgeManager instaBadgeManager;
+    InstaBadgeManager instaBadgeManager,instaBadgeManagerab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,16 +25,17 @@ public class CustomTab extends AppCompatActivity {
         search = (ImageView) findViewById(R.id.search);
         fav = (ImageView) findViewById(R.id.fav);
         user = (ImageView) findViewById(R.id.perm);
+        love = (ImageView) findViewById(R.id.my_love);
 
         instaBadgeManager = new InstaBadgeManager();
+        instaBadgeManagerab = new InstaBadgeManager();
 
 
-        home.setOnClickListener(new View.OnClickListener() {
+        love.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Coordinates anchorViewCoordinates = new Coordinates(home);
-
-                Log.d(TAG, "onClick home: " + anchorViewCoordinates.left + " " + anchorViewCoordinates.top);
+                final Coordinates anchorViewCoordinates = new Coordinates(love);
+                Log.d(TAG, "onClick: "+anchorViewCoordinates.bottom+" "+anchorViewCoordinates.top);
             }
         });
 
@@ -49,9 +50,6 @@ public class CustomTab extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                final Coordinates anchorViewCoordinates = new Coordinates(fav);
-
-                Log.d(TAG, "onClick fav: " + anchorViewCoordinates.left + " " + anchorViewCoordinates.top);
             }
         });
 
@@ -67,11 +65,19 @@ public class CustomTab extends AppCompatActivity {
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
 
-        InstaBadge.Builder builder = new InstaBadge.Builder(this, fav, main_content);
+        InstaBadge.Builder builder = new InstaBadge.Builder(this, love, main_content);
         builder.setBadgeColor("#F44336");
         builder.setAuto_hideable(false);
         builder.setArrow_postion("down");
 
         instaBadgeManager.show(builder.build());
+
+
+        InstaBadge.Builder builder1 = new InstaBadge.Builder(this, love, main_content);
+        builder1.setBadgeColor("#F44336");
+        builder1.setAuto_hideable(false);
+        builder1.setArrow_postion("up");
+
+        instaBadgeManagerab.show(builder1.build());
     }
 }

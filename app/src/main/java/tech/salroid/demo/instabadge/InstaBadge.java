@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 
 public class InstaBadge {
 
-   static String TAG = InstaBadge.class.getSimpleName();
+    static String TAG = InstaBadge.class.getSimpleName();
 
     private Context context;
     private View anchorView;
@@ -58,8 +58,11 @@ public class InstaBadge {
         return badgeColor;
     }
 
-    public String getArrow_postion() {
-        return arrow_postion;
+    public int getArrow_postion() {
+        if (arrow_postion == "down")
+            return 0;
+        else
+            return 1;
     }
 
     public boolean auto_hide() {
@@ -91,7 +94,6 @@ public class InstaBadge {
         }
 
 
-
         public Builder setmOffsetX(int OffsetX) {
             mOffsetX = OffsetX;
             return this;
@@ -104,10 +106,6 @@ public class InstaBadge {
 
         public Builder setBadgeColor(String bg_color) {
             badgeColor = bg_color;
-
-            Coordinates anchorViewCoordinates = new Coordinates(this.anchorView);
-            Log.d(TAG, "Builder: "+anchorViewCoordinates.left+" "+anchorViewCoordinates.right);
-
             return this;
         }
 

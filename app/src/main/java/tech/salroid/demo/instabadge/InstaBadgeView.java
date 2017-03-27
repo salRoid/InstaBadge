@@ -44,9 +44,9 @@ public class InstaBadgeView extends LinearLayout {
         addImageAndText();
 
 
-        if (instaBadge.getArrow_postion().equals("up"))
+        if (instaBadge.getArrow_postion()==1)
             setupUpperArrow();
-        else if (instaBadge.getArrow_postion().equals("down"))
+        else if (instaBadge.getArrow_postion()==0)
             setupBottomArrow();
 
         if (instaBadge.auto_hide())
@@ -94,7 +94,7 @@ public class InstaBadgeView extends LinearLayout {
 
         bottom_arrow.setBackgroundResource(R.drawable.triangle);
         addView(outer_container);
-        addView(bottom_arrow);
+        //addView(bottom_arrow);
 
     }
 
@@ -108,7 +108,7 @@ public class InstaBadgeView extends LinearLayout {
         bottom_arrow.setOrientation(LinearLayout.HORIZONTAL);
 
         bottom_arrow.setBackgroundResource(R.drawable.upper_traingle);
-        addView(bottom_arrow);
+       // addView(bottom_arrow);
         addView(outer_container);
 
 
@@ -162,6 +162,7 @@ public class InstaBadgeView extends LinearLayout {
         scale = getResources().getDisplayMetrics().density;
         dpAsPixels = (int) (13 * scale + 0.5f);
         outer_container.setPadding(dpAsPixels, dpAsPixels, dpAsPixels, dpAsPixels);
+
 
     }
 

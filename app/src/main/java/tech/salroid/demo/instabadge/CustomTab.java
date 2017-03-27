@@ -9,8 +9,10 @@ import android.widget.RelativeLayout;
 
 public class CustomTab extends AppCompatActivity {
 
-    ImageView home,search,fav,user,love;
+    ImageView home, search, fav, user, love;
     String TAG = CustomTab.class.getSimpleName();
+    RelativeLayout main_content;
+    InstaBadgeManager instaBadgeManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,52 +20,58 @@ public class CustomTab extends AppCompatActivity {
         setContentView(R.layout.activity_custom_tab);
 
 
-            RelativeLayout main_content = (RelativeLayout) findViewById(R.id.activity_custom_tab);
-            home = (ImageView) findViewById(R.id.home);
-            search =(ImageView) findViewById(R.id.search);
-            fav = (ImageView) findViewById(R.id.fav);
-            user = (ImageView) findViewById(R.id.perm);
-            love = (ImageView) findViewById(R.id.my_love);
+        main_content = (RelativeLayout) findViewById(R.id.activity_custom_tab);
+        home = (ImageView) findViewById(R.id.home);
+        search = (ImageView) findViewById(R.id.search);
+        fav = (ImageView) findViewById(R.id.fav);
+        user = (ImageView) findViewById(R.id.perm);
 
-            /*InstaBadgeManager instaBadgeManager = new InstaBadgeManager();
-            InstaBadge.Builder builder = new InstaBadge.Builder(this,love,main_content);
-            builder.setBadgeColor("#F44336");
-            builder.setAuto_hideable(false);
-            builder.setArrow_postion("down");
+        instaBadgeManager = new InstaBadgeManager();
 
-            instaBadgeManager.show(builder.build());*/
 
-            home.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    final Coordinates anchorViewCoordinates = new Coordinates(home);
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Coordinates anchorViewCoordinates = new Coordinates(home);
 
-                    Log.d(TAG, "onClick home: "+anchorViewCoordinates.left+" "+anchorViewCoordinates.top);
-                }
-            });
+                Log.d(TAG, "onClick home: " + anchorViewCoordinates.left + " " + anchorViewCoordinates.top);
+            }
+        });
 
-            search.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-                }
-            });
+            }
+        });
 
-            fav.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+        fav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-                    final Coordinates anchorViewCoordinates = new Coordinates(fav);
+                final Coordinates anchorViewCoordinates = new Coordinates(fav);
 
-                    Log.d(TAG, "onClick fav: "+anchorViewCoordinates.left+" "+anchorViewCoordinates.top);
-                }
-            });
+                Log.d(TAG, "onClick fav: " + anchorViewCoordinates.left + " " + anchorViewCoordinates.top);
+            }
+        });
 
-            user.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                }
-            });
+        user.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
 
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+
+        InstaBadge.Builder builder = new InstaBadge.Builder(this, fav, main_content);
+        builder.setBadgeColor("#F44336");
+        builder.setAuto_hideable(false);
+        builder.setArrow_postion("down");
+
+        instaBadgeManager.show(builder.build());
     }
 }

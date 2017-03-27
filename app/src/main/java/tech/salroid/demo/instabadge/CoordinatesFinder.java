@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 
 class CoordinatesFinder {
 
-    static String TAG = CoordinatesFinder.class.getSimpleName();
 
     static Point getCoordinates(final View instaBadgeView, InstaBadge instaBadge) {
 
@@ -25,27 +24,41 @@ class CoordinatesFinder {
         point.y += instaBadge.getOffsetY();
 
          point.x -= instaBadge.getRootView().getPaddingLeft();
+        AdjustHorizontalCenteredOutOfBounds(instaBadgeView, instaBadge.getRootView(), point, rootCoordinates);
          point.y -= instaBadge.getRootView().getPaddingTop();
-
-         // manual co - ordinates
-        point.x = 550;
-        point.y = 1350;
-
 
         return point;
     }
 
     private static Point getPositionAbove(View instaBadgeView, InstaBadge instaBadge, Coordinates anchorViewCoordinates, Coordinates rootCoordinates) {
         Point point = new Point();
-        point.x = anchorViewCoordinates.left + getXOffset(instaBadge);
+        point.x = anchorViewCoordinates.left + getXOffset(instaBadgeView,instaBadge);
         point.y = anchorViewCoordinates.top - instaBadgeView.getMeasuredHeight();
         return point;
 
     }
 
-    private static int getXOffset(InstaBadge instaBadge) {
+    private static void AdjustHorizontalCenteredOutOfBounds(View instaBadgeView, ViewGroup rootView, Point point, Coordinates rootCoordinates) {
+        ViewGroup.LayoutParams params = instaBadgeView.getLayoutParams();
+        int rootWidth = rootView.getWidth() - rootView.getPaddingLeft() - rootView.getPaddingRight();
+        if (instaBadgeView.getMeasuredWidth() > rootWidth) {
+            point.x = rootCoordinates.left + rootView.getPaddingLeft();
+            params.width = rootWidth;
+            params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+            instaBadgeView.setLayoutParams(params);
+            measureViewWithFixedWidth(instaBadgeView, rootWidth);
+        }
+    }
+
+    private static void measureViewWithFixedWidth(View instaBadgeView, int rootWidth) {
+        instaBadgeView.measure(View.MeasureSpec.makeMeasureSpec(rootWidth,
+                View.MeasureSpec.EXACTLY), ViewGroup.LayoutParams.WRAP_CONTENT);
+    }
+
+
+    private static int getXOffset(View instaBadgeView , InstaBadge instaBadge) {
         int offset;
-        offset = ((instaBadge.getAnchorView().getWidth()) / 2);
+        offset = ((instaBadge.getAnchorView().getWidth() - instaBadgeView.getMeasuredWidth()) / 2);
         return offset;
     }
 

@@ -7,13 +7,5 @@
     android:layout_height="match_parent"
     tools:context="tech.salroid.demo.instabadge.FragmentOne">
 
-    <tech.salroid.demo.instabadge.InstaBadgeView
-        android:layout_marginLeft="32dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:setColor="#E91E63"
-        app:autohide="false"
-        app:setLayoutOrientation="up"
-        />
 
 </RelativeLayout>

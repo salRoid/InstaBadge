@@ -4,10 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_custom_tab"
     android:layout_width="match_parent"
-    android:clipChildren="false"
     android:layout_height="match_parent"
     android:background="#f7f7f7"
     tools:context="tech.salroid.demo.instabadge.CustomTab">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="?attr/colorPrimary"
+        android:elevation="6dp"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
     <ImageView
         android:background="#fff"

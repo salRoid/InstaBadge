@@ -20,7 +20,7 @@ public class InstaBadgeManager {
             return null;
         }
 
-        instaBadgeView.setVisibility(View.VISIBLE);
+        AnimationUtils.popup(instaBadgeView, 1000).start();
 
         return instaBadgeView;
     }
@@ -46,10 +46,8 @@ public class InstaBadgeManager {
 
         moveBadgeToCorrectPosition(instaBadgeView, p);
 
-
         int anchorViewId = instaBadge.getAnchorView().getId();
         instaBadgeView.setTag(anchorViewId);
-
 
         return instaBadgeView;
     }
@@ -57,8 +55,8 @@ public class InstaBadgeManager {
     private void moveBadgeToCorrectPosition(InstaBadgeView instaBadgeView, Point p) {
         Coordinates coordinates = new Coordinates(instaBadgeView);
         int translationX = p.x - coordinates.left;
-        int translationY = p.y - coordinates.top;
-        instaBadgeView.setTranslationX(!UiUtils.isRtl() ? translationX : -translationX);
+        int translationY = p.y  - coordinates.top;
+        instaBadgeView.setTranslationX(translationX);
         instaBadgeView.setTranslationY(translationY);
     }
 

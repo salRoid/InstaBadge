@@ -7,6 +7,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.RotateDrawable;
 import android.os.Handler;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.Gravity;
@@ -175,6 +176,8 @@ public class InstaBadgeView extends LinearLayout {
         scale = getResources().getDisplayMetrics().density;
         dpAsPixels = (int) (13 * scale + 0.5f);
         outer_container.setPadding(dpAsPixels, dpAsPixels, dpAsPixels, dpAsPixels);
+
+
 
 
     }

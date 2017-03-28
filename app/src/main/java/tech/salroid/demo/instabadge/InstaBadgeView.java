@@ -10,7 +10,7 @@ import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.ViewTreeObserver;
+
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -36,21 +36,21 @@ public class InstaBadgeView extends LinearLayout {
     public InstaBadgeView(Context context, InstaBadge instaBadge) {
         super(context);
         this.context = context;
-        this.instaBadge= instaBadge;
+        this.instaBadge = instaBadge;
         init();
     }
 
     private void init() {
 
         setupMainLayout();
-        setupBadgeImage();
+       setupBadgeImage();
         setupBadgeText();
         addImageAndText();
 
 
-        if (instaBadge.getArrow_postion()==1)
+        if (instaBadge.getArrow_postion() == 1)
             setupUpperArrow();
-        else if (instaBadge.getArrow_postion()==0)
+        else if (instaBadge.getArrow_postion() == 0)
             setupBottomArrow();
 
         if (instaBadge.auto_hide())
@@ -113,8 +113,7 @@ public class InstaBadgeView extends LinearLayout {
 
         bottom_arrow.setBackgroundResource(R.drawable.upper_traingle);
 
-       addView(bottom_arrow);
-       // Log.d(TAG, "setupUpperArrow: "+bottom_arrow.getLayoutParams().height);
+        addView(bottom_arrow);
         addView(outer_container);
 
         /*bottom_arrow.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -140,7 +139,7 @@ public class InstaBadgeView extends LinearLayout {
         LayoutParams text_params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1f);
         text_params.setMargins(dpAsPixels, 0, 0, 0);
 
-        badge_text.setText("5");
+        badge_text.setText(instaBadge.getText());
         badge_text.setGravity(Gravity.CENTER);
         badge_text.setTextColor(Color.WHITE);
         badge_text.setLayoutParams(text_params);

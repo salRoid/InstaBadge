@@ -65,10 +65,13 @@ public class CustomTab extends AppCompatActivity {
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
 
+
+
         InstaBadge.Builder builder = new InstaBadge.Builder(this, love, main_content);
         builder.setBadgeColor("#F44336");
         builder.setAuto_hideable(false);
         builder.setArrow_postion("down");
+        builder.setText(10);
 
         instaBadgeManager.show(builder.build());
 
@@ -77,6 +80,7 @@ public class CustomTab extends AppCompatActivity {
         builder1.setBadgeColor("#F44336");
         builder1.setAuto_hideable(false);
         builder1.setArrow_postion("up");
+
 
         instaBadgeManagerab.show(builder1.build());
     }

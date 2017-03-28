@@ -22,6 +22,7 @@ public class InstaBadge {
     private String badgeColor;
     private String arrow_postion;
     private boolean auto_hideable;
+    private String text;
 
     public InstaBadge(Builder builder) {
         context = builder.context;
@@ -32,6 +33,7 @@ public class InstaBadge {
         badgeColor = builder.badgeColor;
         arrow_postion = builder.arrow_postion;
         auto_hideable = builder.auto_hideable;
+        text = builder.text;
     }
 
     public Context getContext() {
@@ -69,6 +71,9 @@ public class InstaBadge {
         return auto_hideable;
     }
 
+    public String getText() {
+        return text;
+    }
 
     public static class Builder {
 
@@ -80,6 +85,7 @@ public class InstaBadge {
         private String badgeColor;
         private String arrow_postion;
         private boolean auto_hideable;
+        private String text;
 
         public Builder(Context context, View anchorView, ViewGroup rootView) {
 
@@ -91,8 +97,13 @@ public class InstaBadge {
             badgeColor = "#000";
             arrow_postion = "down";
             auto_hideable = false;
+            text = "1";
         }
 
+        public Builder setText(int mtext) {
+            text = Integer.toString(mtext);
+            return this;
+        }
 
         public Builder setmOffsetX(int OffsetX) {
             mOffsetX = OffsetX;

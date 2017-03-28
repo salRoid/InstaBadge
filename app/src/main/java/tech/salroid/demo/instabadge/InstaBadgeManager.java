@@ -63,7 +63,6 @@ public class InstaBadgeManager {
         instaBadgeView.setTag(anchorViewId);
 
 
-
         return instaBadgeView;
     }
 

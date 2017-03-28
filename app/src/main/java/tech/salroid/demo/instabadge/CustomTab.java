@@ -75,7 +75,7 @@ public class CustomTab extends AppCompatActivity {
 
         InstaBadge.Builder builder = new InstaBadge.Builder(this, fav, main_content);
         builder.setBadgeColor("#F44336");
-        builder.setAuto_hideable(false);
+        builder.setAuto_hideable(true);
         builder.setArrow_postion("down");
         builder.setText(10);
         builder.setDrawable(ContextCompat.getDrawable(this, R.drawable.ic_star_white_24dp));

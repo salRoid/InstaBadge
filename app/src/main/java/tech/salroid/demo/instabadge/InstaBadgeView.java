@@ -1,5 +1,7 @@
 package tech.salroid.demo.instabadge;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -70,7 +72,12 @@ public class InstaBadgeView extends LinearLayout {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                setVisibility(GONE);
+                AnimationUtils.popout(InstaBadgeView.this, 1000, new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        super.onAnimationEnd(animation);
+                    }
+                }).start();
             }
         }, 3000);
     }

@@ -2,7 +2,10 @@ package tech.salroid.demo.instabadge;
 
 import android.graphics.Point;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 /**
  * Created by salroid on 3/26/2017.
@@ -11,6 +14,7 @@ import android.view.View;
 public class InstaBadgeManager {
 
     public static final String TAG = InstaBadgeManager.class.getSimpleName();
+    private LinearLayout bottom_dot;
 
     public View show(InstaBadge instaBadge) {
 
@@ -37,27 +41,41 @@ public class InstaBadgeManager {
             return null;
         }
 
+       /* bottom_dot = new LinearLayout(instaBadge.getContext());
+        LinearLayout.LayoutParams dot_params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dot_params.gravity = Gravity.CENTER_HORIZONTAL;
+        bottom_dot.setLayoutParams(dot_params);
+        bottom_dot.setOrientation(LinearLayout.HORIZONTAL);
+        bottom_dot.setBackgroundResource(R.drawable.circular_dot);*/
+
+
         InstaBadgeView instaBadgeView = new InstaBadgeView(instaBadge.getContext(), instaBadge);
 
 
         instaBadge.getRootView().addView(instaBadgeView);
+        //instaBadge.getRootView().addView(bottom_dot);
 
         Point p = CoordinatesFinder.getCoordinates(instaBadgeView,instaBadge);
 
-        moveBadgeToCorrectPosition(instaBadgeView, p);
+        moveBadgeToCorrectPosition(instaBadgeView, p ,bottom_dot,instaBadge);
 
         int anchorViewId = instaBadge.getAnchorView().getId();
         instaBadgeView.setTag(anchorViewId);
 
+
+
         return instaBadgeView;
     }
 
-    private void moveBadgeToCorrectPosition(InstaBadgeView instaBadgeView, Point p) {
+
+
+    private void moveBadgeToCorrectPosition(InstaBadgeView instaBadgeView, Point p, View bottom_dot,InstaBadge instaBadge) {
         Coordinates coordinates = new Coordinates(instaBadgeView);
         int translationX = p.x - coordinates.left;
         int translationY = p.y  - coordinates.top;
         instaBadgeView.setTranslationX(translationX);
         instaBadgeView.setTranslationY(translationY);
+        //bottom_dot.setTranslationY(p.y-2*96);
     }
 
 

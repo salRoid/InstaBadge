@@ -1,5 +1,6 @@
 package tech.salroid.demo.instabadge;
 
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -72,6 +73,7 @@ public class CustomTab extends AppCompatActivity {
         builder.setAuto_hideable(false);
         builder.setArrow_postion("down");
         builder.setText(10);
+        builder.setDrawable(ContextCompat.getDrawable(this, R.drawable.ic_star_white_24dp));
 
         instaBadgeManager.show(builder.build());
 
@@ -80,7 +82,6 @@ public class CustomTab extends AppCompatActivity {
         builder1.setBadgeColor("#F44336");
         builder1.setAuto_hideable(false);
         builder1.setArrow_postion("up");
-
 
         instaBadgeManagerab.show(builder1.build());
     }

@@ -155,7 +155,7 @@ public class InstaBadgeView extends LinearLayout {
         badge_params.setMargins(0, 0, dpAsPixels, 0);
         badge_params.gravity = Gravity.CENTER;
         badge_icon.setLayoutParams(badge_params);
-        badge_icon.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_favorite_white_24dp));
+        badge_icon.setImageDrawable(instaBadge.getDrawable());
 
     }
 

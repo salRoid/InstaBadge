@@ -1,6 +1,8 @@
 package tech.salroid.demo.instabadge;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +25,7 @@ public class InstaBadge {
     private String arrow_postion;
     private boolean auto_hideable;
     private String text;
+    private Drawable drawable;
 
     public InstaBadge(Builder builder) {
         context = builder.context;
@@ -34,6 +37,8 @@ public class InstaBadge {
         arrow_postion = builder.arrow_postion;
         auto_hideable = builder.auto_hideable;
         text = builder.text;
+        drawable = builder.drawable;
+
     }
 
     public Context getContext() {
@@ -75,6 +80,10 @@ public class InstaBadge {
         return text;
     }
 
+    public Drawable getDrawable() {
+        return drawable;
+    }
+
     public static class Builder {
 
         private Context context;
@@ -86,6 +95,7 @@ public class InstaBadge {
         private String arrow_postion;
         private boolean auto_hideable;
         private String text;
+        Drawable drawable;
 
         public Builder(Context context, View anchorView, ViewGroup rootView) {
 
@@ -98,7 +108,9 @@ public class InstaBadge {
             arrow_postion = "down";
             auto_hideable = false;
             text = "1";
+            drawable = ContextCompat.getDrawable(context, R.drawable.ic_favorite_white_24dp);
         }
+
 
         public Builder setText(int mtext) {
             text = Integer.toString(mtext);
@@ -127,6 +139,11 @@ public class InstaBadge {
 
         public Builder setAuto_hideable(boolean value) {
             auto_hideable = value;
+            return this;
+        }
+
+        public Builder setDrawable(Drawable mdrawable) {
+            this.drawable = mdrawable;
             return this;
         }
 

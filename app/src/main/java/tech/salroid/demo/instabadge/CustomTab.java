@@ -8,13 +8,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 public class CustomTab extends AppCompatActivity {
 
     ImageView home, search, fav, user, love;
     String TAG = CustomTab.class.getSimpleName();
     RelativeLayout main_content;
-    InstaBadgeManager instaBadgeManager,instaBadgeManagerab;
+    InstaBadgeManager instaBadgeManager, instaBadgeManagerab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +42,7 @@ public class CustomTab extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 final Coordinates anchorViewCoordinates = new Coordinates(love);
-                Log.d(TAG, "onClick: "+anchorViewCoordinates.bottom+" "+anchorViewCoordinates.top);
+                Log.d(TAG, "onClick: " + anchorViewCoordinates.bottom + " " + anchorViewCoordinates.top);
             }
         });
 
@@ -71,8 +72,6 @@ public class CustomTab extends AppCompatActivity {
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
 
-
-
         InstaBadge.Builder builder = new InstaBadge.Builder(this, fav, main_content);
         builder.setBadgeColor("#F44336");
         builder.setAuto_hideable(true);
@@ -82,6 +81,13 @@ public class CustomTab extends AppCompatActivity {
 
         instaBadgeManager.show(builder.build());
 
+        instaBadgeManager.setInstaBadgeClickListener(new InstaBadgeView.InstaBadgeViewClickListener() {
+            @Override
+            public void instaBadgeClicked() {
+
+                Toast.makeText(CustomTab.this,"Badge Clicked",Toast.LENGTH_LONG).show();
+            }
+        });
 
         InstaBadge.Builder builder1 = new InstaBadge.Builder(this, love, main_content);
         builder1.setBadgeColor("#F44336");

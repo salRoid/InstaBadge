@@ -15,6 +15,8 @@ public class InstaBadgeManager {
 
     public static final String TAG = InstaBadgeManager.class.getSimpleName();
     private LinearLayout bottom_dot;
+    private InstaBadgeView.InstaBadgeViewClickListener instaBadgeViewClickListener;
+    private InstaBadgeView instaBadgeView;
 
     public View show(InstaBadge instaBadge) {
 
@@ -49,7 +51,7 @@ public class InstaBadgeManager {
         bottom_dot.setBackgroundResource(R.drawable.circular_dot);*/
 
 
-        InstaBadgeView instaBadgeView = new InstaBadgeView(instaBadge.getContext(), instaBadge);
+        instaBadgeView = new InstaBadgeView(instaBadge.getContext(), instaBadge);
 
 
         instaBadge.getRootView().addView(instaBadgeView);
@@ -75,6 +77,13 @@ public class InstaBadgeManager {
         instaBadgeView.setTranslationX(translationX);
         instaBadgeView.setTranslationY(translationY);
         //bottom_dot.setTranslationY(p.y-2*96);
+    }
+
+    public  void setInstaBadgeClickListener(InstaBadgeView.InstaBadgeViewClickListener instaBadgeClickListener) {
+
+        if (instaBadgeView!=null)
+            instaBadgeView.setInstaBadgeClickListener(instaBadgeClickListener);
+
     }
 
 

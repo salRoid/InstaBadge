@@ -10,6 +10,7 @@ import android.graphics.drawable.RotateDrawable;
 import android.os.Handler;
 import android.view.Gravity;
 
+import android.view.MotionEvent;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -31,6 +32,7 @@ public class InstaBadgeView extends LinearLayout {
     private TextView badge_text;
     private LinearLayout bottom_arrow;
     private InstaBadge instaBadge;
+    private InstaBadgeViewClickListener instaBadgeViewClickListener;
 
 
     public InstaBadgeView(Context context, InstaBadge instaBadge) {
@@ -38,6 +40,23 @@ public class InstaBadgeView extends LinearLayout {
         this.context = context;
         this.instaBadge = instaBadge;
         init();
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+
+        final int action = event.getAction();
+
+        switch (action) {
+
+            case MotionEvent.ACTION_DOWN:
+                if (instaBadgeViewClickListener != null)
+                    instaBadgeViewClickListener.instaBadgeClicked();
+                break;
+
+        }
+
+        return true;
     }
 
     private void init() {
@@ -182,7 +201,14 @@ public class InstaBadgeView extends LinearLayout {
         dpAsPixels = (int) (13 * scale + 0.5f);
         outer_container.setPadding(dpAsPixels, dpAsPixels, dpAsPixels, dpAsPixels);
 
+    }
 
+    void setInstaBadgeClickListener(InstaBadgeViewClickListener instaBadgeClickListener) {
+        this.instaBadgeViewClickListener = instaBadgeClickListener;
+    }
+
+    interface InstaBadgeViewClickListener {
+        void instaBadgeClicked();
     }
 
 }

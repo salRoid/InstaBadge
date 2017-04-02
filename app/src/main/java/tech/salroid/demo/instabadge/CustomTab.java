@@ -3,25 +3,34 @@ package tech.salroid.demo.instabadge;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CustomTab extends AppCompatActivity {
 
-    ImageView home, search, fav, user, love;
-    String TAG = CustomTab.class.getSimpleName();
-    RelativeLayout main_content;
-    InstaBadgeManager instaBadgeManager, instaBadgeManagerab;
+    private ImageView home, search, fav, user, love;
+    private String TAG = CustomTab.class.getSimpleName();
+    private RelativeLayout main_content;
+    private InstaBadgeManager instaBadgeManager;
+    private RecyclerView recyclerView;
+    private List<String> list;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_tab);
-
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -32,19 +41,33 @@ public class CustomTab extends AppCompatActivity {
         search = (ImageView) findViewById(R.id.search);
         fav = (ImageView) findViewById(R.id.fav);
         user = (ImageView) findViewById(R.id.perm);
-        love = (ImageView) findViewById(R.id.my_love);
+
+        recyclerView = (RecyclerView) findViewById(R.id.rv);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        list = new ArrayList<>();
+        list.add("brother");
+        list.add("girlfriend");
+        list.add("long");
+        list.add("distance");
+        list.add("broke-up");
+        list.add("close");
+        list.add("work");
+        list.add("destination");
+        list.add("wo");
+        list.add("varanasi");
+        list.add("se");
+        list.add("hai");
+
+
+        A a = new A(this,list);
+        recyclerView.setAdapter(a);
 
         instaBadgeManager = new InstaBadgeManager();
-        instaBadgeManagerab = new InstaBadgeManager();
 
 
-        love.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final Coordinates anchorViewCoordinates = new Coordinates(love);
-                Log.d(TAG, "onClick: " + anchorViewCoordinates.bottom + " " + anchorViewCoordinates.top);
-            }
-        });
+
 
         search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,11 +112,5 @@ public class CustomTab extends AppCompatActivity {
             }
         });
 
-        InstaBadge.Builder builder1 = new InstaBadge.Builder(this, love, main_content);
-        builder1.setBadgeColor("#F44336");
-        builder1.setAuto_hideable(false);
-        builder1.setArrow_postion("up");
-
-        instaBadgeManagerab.show(builder1.build());
     }
 }

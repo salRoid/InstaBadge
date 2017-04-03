@@ -43,19 +43,19 @@ public class InstaBadgeManager {
             return null;
         }
 
-       /* bottom_dot = new LinearLayout(instaBadge.getContext());
+        bottom_dot = new LinearLayout(instaBadge.getContext());
         LinearLayout.LayoutParams dot_params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dot_params.gravity = Gravity.CENTER_HORIZONTAL;
         bottom_dot.setLayoutParams(dot_params);
         bottom_dot.setOrientation(LinearLayout.HORIZONTAL);
-        bottom_dot.setBackgroundResource(R.drawable.circular_dot);*/
+        bottom_dot.setBackgroundResource(R.drawable.circular_dot);
 
 
         instaBadgeView = new InstaBadgeView(instaBadge.getContext(), instaBadge);
 
 
         instaBadge.getRootView().addView(instaBadgeView);
-        //instaBadge.getRootView().addView(bottom_dot);
+        instaBadge.getRootView().addView(bottom_dot);
 
         Point p = CoordinatesFinder.getCoordinates(instaBadgeView,instaBadge);
 
@@ -76,7 +76,10 @@ public class InstaBadgeManager {
         int translationY = p.y  - coordinates.top;
         instaBadgeView.setTranslationX(translationX);
         instaBadgeView.setTranslationY(translationY);
-        //bottom_dot.setTranslationY(p.y-2*96);
+        bottom_dot.setTranslationY(p.y-96-48);
+        bottom_dot.setTranslationX(p.x+(instaBadge.getAnchorView().getWidth())
+                + getXOffset(bottom_dot,instaBadge)-
+                2*bottom_dot.getLayoutParams().width);
     }
 
     public  void setInstaBadgeClickListener(InstaBadgeView.InstaBadgeViewClickListener instaBadgeClickListener) {
@@ -86,5 +89,10 @@ public class InstaBadgeManager {
 
     }
 
+    private static int getXOffset(View instaBadgeView , InstaBadge instaBadge) {
+        int offset;
+        offset = ((instaBadge.getAnchorView().getWidth() - instaBadgeView.getMeasuredWidth()) / 2);
+        return offset;
+    }
 
 }

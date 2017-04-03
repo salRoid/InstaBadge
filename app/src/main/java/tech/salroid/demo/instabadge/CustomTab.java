@@ -1,5 +1,6 @@
 package tech.salroid.demo.instabadge;
 
+import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -41,6 +42,7 @@ public class CustomTab extends AppCompatActivity {
         search = (ImageView) findViewById(R.id.search);
         fav = (ImageView) findViewById(R.id.fav);
         user = (ImageView) findViewById(R.id.perm);
+        love = (ImageView) findViewById(R.id.love);
 
         recyclerView = (RecyclerView) findViewById(R.id.rv);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -95,10 +97,10 @@ public class CustomTab extends AppCompatActivity {
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
 
-        InstaBadge.Builder builder = new InstaBadge.Builder(this, fav, main_content);
+        InstaBadge.Builder builder = new InstaBadge.Builder(this, love, main_content);
         builder.setBadgeColor("#F44336");
         builder.setAuto_hideable(true);
-        builder.setArrow_postion("down");
+        builder.setArrow_postion("up");
         builder.setText(10);
         builder.setDrawable(ContextCompat.getDrawable(this, R.drawable.ic_star_white_24dp));
 
@@ -107,8 +109,7 @@ public class CustomTab extends AppCompatActivity {
         instaBadgeManager.setInstaBadgeClickListener(new InstaBadgeView.InstaBadgeViewClickListener() {
             @Override
             public void instaBadgeClicked() {
-
-                Toast.makeText(CustomTab.this,"Badge Clicked",Toast.LENGTH_LONG).show();
+                startActivity(new Intent(CustomTab.this,MainActivity.class));
             }
         });
 

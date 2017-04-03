@@ -19,12 +19,19 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
+    <ImageView
+        android:id="@+id/love"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/hearts" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv"
-        android:layout_below="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-       />
+        android:layout_below="@+id/toolbar"
+        android:visibility="gone" />
 
 
     <LinearLayout
@@ -55,13 +62,13 @@
             android:src="@drawable/ic_search_black_24dp" />
 
         <ImageView
-            android:tag="fav"
             android:id="@+id/fav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="16dp"
-            android:src="@drawable/ic_favorite_black_24dp" />
+            android:src="@drawable/ic_favorite_black_24dp"
+            android:tag="fav" />
 
         <ImageView
             android:id="@+id/perm"
@@ -72,7 +79,6 @@
             android:src="@drawable/ic_perm_identity_black_24dp" />
 
     </LinearLayout>
-
 
 
 </RelativeLayout>

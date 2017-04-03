@@ -76,7 +76,10 @@ public class InstaBadgeManager {
         int translationY = p.y  - coordinates.top;
         instaBadgeView.setTranslationX(translationX);
         instaBadgeView.setTranslationY(translationY);
+        if(instaBadge.getArrow_postion()==1)
         bottom_dot.setTranslationY(p.y-96-48);
+        else
+            bottom_dot.setTranslationY(p.y+96+48-4*bottom_dot.getLayoutParams().height);
         bottom_dot.setTranslationX(p.x+(instaBadge.getAnchorView().getWidth())
                 + getXOffset(bottom_dot,instaBadge)-
                 2*bottom_dot.getLayoutParams().width);

@@ -3,17 +3,15 @@ package tech.salroid.demo.instabadge;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.RotateDrawable;
 import android.os.Handler;
-import android.support.design.widget.Snackbar;
-import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.Gravity;
 
+import android.view.MotionEvent;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -34,6 +32,7 @@ public class InstaBadgeView extends LinearLayout {
     private TextView badge_text;
     private LinearLayout bottom_arrow;
     private InstaBadge instaBadge;
+    private InstaBadgeViewClickListener instaBadgeViewClickListener;
 
 
     public InstaBadgeView(Context context, InstaBadge instaBadge) {
@@ -43,10 +42,27 @@ public class InstaBadgeView extends LinearLayout {
         init();
     }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+
+        final int action = event.getAction();
+
+        switch (action) {
+
+            case MotionEvent.ACTION_DOWN:
+                if (instaBadgeViewClickListener != null)
+                    instaBadgeViewClickListener.instaBadgeClicked();
+                break;
+
+        }
+
+        return true;
+    }
+
     private void init() {
 
         setupMainLayout();
-       setupBadgeImage();
+        setupBadgeImage();
         setupBadgeText();
         addImageAndText();
 
@@ -124,6 +140,7 @@ public class InstaBadgeView extends LinearLayout {
         addView(bottom_arrow);
         addView(outer_container);
 
+
         /*bottom_arrow.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
@@ -184,9 +201,14 @@ public class InstaBadgeView extends LinearLayout {
         dpAsPixels = (int) (13 * scale + 0.5f);
         outer_container.setPadding(dpAsPixels, dpAsPixels, dpAsPixels, dpAsPixels);
 
+    }
 
+    void setInstaBadgeClickListener(InstaBadgeViewClickListener instaBadgeClickListener) {
+        this.instaBadgeViewClickListener = instaBadgeClickListener;
+    }
 
-
+    interface InstaBadgeViewClickListener {
+        void instaBadgeClicked();
     }
 
 }

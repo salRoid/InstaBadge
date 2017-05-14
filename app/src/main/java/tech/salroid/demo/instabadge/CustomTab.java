@@ -7,15 +7,16 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import tech.salroid.library.instabadge.InstaBadge;
+import tech.salroid.library.instabadge.InstaBadgeManager;
+import tech.salroid.library.instabadge.InstaBadgeView;
 
 public class CustomTab extends AppCompatActivity {
 
@@ -25,7 +26,6 @@ public class CustomTab extends AppCompatActivity {
     private InstaBadgeManager instaBadgeManager;
     private RecyclerView recyclerView;
     private List<String> list;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +63,7 @@ public class CustomTab extends AppCompatActivity {
         list.add("hai");
 
 
-        A a = new A(this,list);
+        TestRecyclerAdapter a = new TestRecyclerAdapter(this,list);
         recyclerView.setAdapter(a);
 
         instaBadgeManager = new InstaBadgeManager();

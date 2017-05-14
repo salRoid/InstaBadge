@@ -1,4 +1,4 @@
-package tech.salroid.demo.instabadge;
+package tech.salroid.library.instabadge;
 
 import android.graphics.Point;
 import android.util.Log;
@@ -6,6 +6,8 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+
+import tech.salroid.instabadge.R;
 
 /**
  * Created by salroid on 3/26/2017.

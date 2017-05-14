@@ -1,4 +1,4 @@
-package tech.salroid.demo.instabadge;
+package tech.salroid.library.instabadge;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -11,10 +11,11 @@ import android.os.Handler;
 import android.view.Gravity;
 
 import android.view.MotionEvent;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import tech.salroid.instabadge.R;
 
 /**
  * Created by salroid on 2/18/2017.
@@ -207,7 +208,7 @@ public class InstaBadgeView extends LinearLayout {
         this.instaBadgeViewClickListener = instaBadgeClickListener;
     }
 
-    interface InstaBadgeViewClickListener {
+    public interface InstaBadgeViewClickListener {
         void instaBadgeClicked();
     }
 

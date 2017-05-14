@@ -1,4 +1,4 @@
-package tech.salroid.demo.instabadge;
+package tech.salroid.library.instabadge;
 
 import android.view.View;
 

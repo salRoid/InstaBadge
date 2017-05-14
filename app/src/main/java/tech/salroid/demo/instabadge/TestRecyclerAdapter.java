@@ -13,18 +13,19 @@ import java.util.List;
  * Created by salroid on 4/2/2017.
  */
 
-public class A extends RecyclerView.Adapter<A.VH>{
-    Context context;
-    List<String> list;
+public class TestRecyclerAdapter extends RecyclerView.Adapter<TestRecyclerAdapter.VH> {
 
-    public A(Context context, List<String> list) {
+    private Context context;
+    private List<String> list;
+
+    TestRecyclerAdapter(Context context, List<String> list) {
         this.context = context;
         this.list = list;
     }
 
     @Override
     public VH onCreateViewHolder(ViewGroup parent, int viewType) {
-       View view  = LayoutInflater.from(context).inflate(R.layout.custom_single_row,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.custom_single_row, parent, false);
         return new VH(view);
     }
 
@@ -38,9 +39,10 @@ public class A extends RecyclerView.Adapter<A.VH>{
         return list.size();
     }
 
-     class VH extends RecyclerView.ViewHolder {
+    class VH extends RecyclerView.ViewHolder {
         TextView textView;
-         VH(View itemView) {
+
+        VH(View itemView) {
             super(itemView);
             textView = (TextView) itemView.findViewById(R.id.tea);
 

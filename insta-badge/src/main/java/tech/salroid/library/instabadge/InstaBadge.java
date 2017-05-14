@@ -28,7 +28,7 @@ public class InstaBadge {
     private String text;
     private Drawable drawable;
 
-    public InstaBadge(Builder builder) {
+    InstaBadge(Builder builder) {
         context = builder.context;
         anchorView = builder.anchorView;
         rootView = builder.rootView;

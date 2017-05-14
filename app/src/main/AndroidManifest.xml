@@ -12,7 +12,7 @@
 
         </activity>
 
-        <activity android:name=".CustomTab">
+        <activity android:name=".CustomTabActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

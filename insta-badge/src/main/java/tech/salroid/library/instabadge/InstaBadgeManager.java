@@ -15,7 +15,7 @@ import tech.salroid.instabadge.R;
 
 public class InstaBadgeManager {
 
-    public static final String TAG = InstaBadgeManager.class.getSimpleName();
+    private static final String TAG = InstaBadgeManager.class.getSimpleName();
     private LinearLayout bottom_dot;
     private InstaBadgeView.InstaBadgeViewClickListener instaBadgeViewClickListener;
     private InstaBadgeView instaBadgeView;

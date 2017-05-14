@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f7f7f7"
-    tools:context="tech.salroid.demo.instabadge.CustomTab">
+    tools:context="tech.salroid.demo.instabadge.CustomTabActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"

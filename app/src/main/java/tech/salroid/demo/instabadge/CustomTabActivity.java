@@ -18,10 +18,10 @@ import tech.salroid.library.instabadge.InstaBadge;
 import tech.salroid.library.instabadge.InstaBadgeManager;
 import tech.salroid.library.instabadge.InstaBadgeView;
 
-public class CustomTab extends AppCompatActivity {
+public class CustomTabActivity extends AppCompatActivity {
 
     private ImageView home, search, fav, user, love;
-    private String TAG = CustomTab.class.getSimpleName();
+    private String TAG = CustomTabActivity.class.getSimpleName();
     private RelativeLayout main_content;
     private InstaBadgeManager instaBadgeManager;
     private RecyclerView recyclerView;
@@ -69,8 +69,6 @@ public class CustomTab extends AppCompatActivity {
         instaBadgeManager = new InstaBadgeManager();
 
 
-
-
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -109,7 +107,7 @@ public class CustomTab extends AppCompatActivity {
         instaBadgeManager.setInstaBadgeClickListener(new InstaBadgeView.InstaBadgeViewClickListener() {
             @Override
             public void instaBadgeClicked() {
-                startActivity(new Intent(CustomTab.this,MainActivity.class));
+                startActivity(new Intent(CustomTabActivity.this,MainActivity.class));
             }
         });
 

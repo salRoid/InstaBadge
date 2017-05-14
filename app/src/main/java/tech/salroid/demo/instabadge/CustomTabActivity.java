@@ -1,6 +1,7 @@
 package tech.salroid.demo.instabadge;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import java.util.List;
 import tech.salroid.library.instabadge.InstaBadge;
 import tech.salroid.library.instabadge.InstaBadgeManager;
 import tech.salroid.library.instabadge.InstaBadgeView;
+import tech.salroid.library.instabadge.SingleBadge;
 
 public class CustomTabActivity extends AppCompatActivity {
 
@@ -26,6 +28,8 @@ public class CustomTabActivity extends AppCompatActivity {
     private InstaBadgeManager instaBadgeManager;
     private RecyclerView recyclerView;
     private List<String> list;
+    private InstaBadge.Builder builder;
+    private Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,14 +99,28 @@ public class CustomTabActivity extends AppCompatActivity {
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
 
-        InstaBadge.Builder builder = new InstaBadge.Builder(this, fav, main_content);
+
+        SingleBadge singleBadge = new SingleBadge();
+        singleBadge.setType("LIKE");
+        singleBadge.setText("4");
+        singleBadge.setDrawable(ContextCompat.getDrawable(this,R.drawable.ic_star_white_24dp));
+
+        builder = new InstaBadge.Builder(this, fav, main_content);
         builder.setBadgeColor("#F44336");
         builder.setAuto_hideable(true);
         builder.setArrow_postion("down");
-        builder.setText(10);
-        builder.setDrawable(ContextCompat.getDrawable(this, R.drawable.ic_star_white_24dp));
+        builder.addBadge(singleBadge);
 
-        instaBadgeManager.show(builder.build());
+        handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                instaBadgeManager.show(builder.build());
+                showAgain();
+
+            }
+        },2000);
 
         instaBadgeManager.setInstaBadgeClickListener(new InstaBadgeView.InstaBadgeViewClickListener() {
             @Override
@@ -111,5 +129,25 @@ public class CustomTabActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    public void showAgain(){
+
+        SingleBadge singleBadge2 = new SingleBadge();
+        singleBadge2.setType("COMMENT");
+        singleBadge2.setText("1");
+        singleBadge2.setDrawable(ContextCompat.getDrawable(this,R.drawable.ic_favorite_white_24dp));
+
+        builder.addBadge(singleBadge2);
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                instaBadgeManager.show(builder.build());
+
+            }
+        },2000);
     }
 }

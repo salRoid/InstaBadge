@@ -15,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.List;
+
 import tech.salroid.instabadge.R;
 
 /**
@@ -165,23 +167,45 @@ public class InstaBadgeView extends LinearLayout {
         LayoutParams text_params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1f);
         text_params.setMargins(dpAsPixels, 0, 0, 0);
 
-        badge_text.setText(instaBadge.getText());
-        badge_text.setGravity(Gravity.CENTER);
-        badge_text.setTextColor(Color.WHITE);
-        badge_text.setLayoutParams(text_params);
+        List<SingleBadge> badgeList = instaBadge.getBadge();
+
+        if (badgeList == null || badgeList.size() == 0)
+            return;
+
+        for (int i = 0; i < badgeList.size(); i++) {
+
+            SingleBadge badge = badgeList.get(i);
+            badge_text.setText(badge.getText());
+            badge_text.setGravity(Gravity.CENTER);
+            badge_text.setTextColor(Color.WHITE);
+            badge_text.setLayoutParams(text_params);
+        }
+
+
 
     }
 
     private void setupBadgeImage() {
 
-        badge_icon = new ImageView(context);
-        dpAsPixels = (int) (16 * scale + 0.5f);
-        LayoutParams badge_params = new LinearLayout.LayoutParams(dpAsPixels, dpAsPixels, 1f);
-        dpAsPixels = (int) (2 * scale + 0.5f);
-        badge_params.setMargins(0, 0, dpAsPixels, 0);
-        badge_params.gravity = Gravity.CENTER;
-        badge_icon.setLayoutParams(badge_params);
-        badge_icon.setImageDrawable(instaBadge.getDrawable());
+        List<SingleBadge> badgeList = instaBadge.getBadge();
+
+        if (badgeList == null || badgeList.size() == 0)
+            return;
+
+        for (int i = 0; i < badgeList.size(); i++) {
+
+            SingleBadge badge = badgeList.get(i);
+            badge_icon = new ImageView(context);
+            dpAsPixels = (int) (16 * scale + 0.5f);
+            LayoutParams badge_params = new LinearLayout.LayoutParams(dpAsPixels, dpAsPixels, 1f);
+            dpAsPixels = (int) (2 * scale + 0.5f);
+            badge_params.setMargins(0, 0, dpAsPixels, 0);
+            badge_params.gravity = Gravity.CENTER;
+            badge_icon.setLayoutParams(badge_params);
+            badge_icon.setImageDrawable(badge.getDrawable());
+        }
+
+
 
     }
 

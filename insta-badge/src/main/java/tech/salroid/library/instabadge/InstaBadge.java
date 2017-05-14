@@ -1,12 +1,11 @@
 package tech.salroid.library.instabadge;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.ViewGroup;
 
-import tech.salroid.instabadge.R;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -25,8 +24,7 @@ public class InstaBadge {
     private String badgeColor;
     private String arrow_postion;
     private boolean auto_hideable;
-    private String text;
-    private Drawable drawable;
+    private List<SingleBadge> badges = new ArrayList<>();
 
     InstaBadge(Builder builder) {
         context = builder.context;
@@ -37,9 +35,7 @@ public class InstaBadge {
         badgeColor = builder.badgeColor;
         arrow_postion = builder.arrow_postion;
         auto_hideable = builder.auto_hideable;
-        text = builder.text;
-        drawable = builder.drawable;
-
+        badges = builder.badges;
     }
 
     public Context getContext() {
@@ -77,14 +73,6 @@ public class InstaBadge {
         return auto_hideable;
     }
 
-    public String getText() {
-        return text;
-    }
-
-    public Drawable getDrawable() {
-        return drawable;
-    }
-
     public static class Builder {
 
         private Context context;
@@ -95,11 +83,9 @@ public class InstaBadge {
         private String badgeColor;
         private String arrow_postion;
         private boolean auto_hideable;
-        private String text;
-        Drawable drawable;
+        private List<SingleBadge> badges = new ArrayList<>();
 
         public Builder(Context context, View anchorView, ViewGroup rootView) {
-
             this.context = context;
             this.anchorView = anchorView;
             this.rootView = rootView;
@@ -108,15 +94,8 @@ public class InstaBadge {
             badgeColor = "#000";
             arrow_postion = "down";
             auto_hideable = false;
-            text = "1";
-            drawable = ContextCompat.getDrawable(context, R.drawable.ic_favorite_white_24dp);
         }
 
-
-        public Builder setText(int mtext) {
-            text = Integer.toString(mtext);
-            return this;
-        }
 
         public Builder setmOffsetX(int OffsetX) {
             mOffsetX = OffsetX;
@@ -143,8 +122,8 @@ public class InstaBadge {
             return this;
         }
 
-        public Builder setDrawable(Drawable mdrawable) {
-            this.drawable = mdrawable;
+        public Builder addBadge(SingleBadge single_badge) {
+            this.badges.add(single_badge);
             return this;
         }
 
@@ -152,4 +131,9 @@ public class InstaBadge {
             return new InstaBadge(this);
         }
     }
+
+    List<SingleBadge> getBadge() {
+        return badges;
+    }
+
 }

@@ -52,9 +52,7 @@ public class InstaBadgeManager {
         bottom_dot.setOrientation(LinearLayout.HORIZONTAL);
         bottom_dot.setBackgroundResource(R.drawable.circular_dot);
 
-
         instaBadgeView = new InstaBadgeView(instaBadge.getContext(), instaBadge);
-
 
         instaBadge.getRootView().addView(instaBadgeView);
         instaBadge.getRootView().addView(bottom_dot);
@@ -65,7 +63,6 @@ public class InstaBadgeManager {
 
         int anchorViewId = instaBadge.getAnchorView().getId();
         instaBadgeView.setTag(anchorViewId);
-
 
         return instaBadgeView;
     }

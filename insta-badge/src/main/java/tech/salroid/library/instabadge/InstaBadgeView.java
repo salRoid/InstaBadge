@@ -157,15 +157,12 @@ public class InstaBadgeView extends LinearLayout {
 
     private void addImageAndText() {
         outer_container.setBackgroundResource(R.drawable.background);
-        outer_container.addView(badge_icon);
-        outer_container.addView(badge_text);
+        //outer_container.addView(badge_icon);
+        //outer_container.addView(badge_text);
     }
 
     private void setupBadgeText() {
 
-        badge_text = new TextView(context);
-        LayoutParams text_params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1f);
-        text_params.setMargins(dpAsPixels, 0, 0, 0);
 
         List<SingleBadge> badgeList = instaBadge.getBadge();
 
@@ -174,11 +171,16 @@ public class InstaBadgeView extends LinearLayout {
 
         for (int i = 0; i < badgeList.size(); i++) {
 
+            badge_text = new TextView(context);
+            LayoutParams text_params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1f);
+            text_params.setMargins(dpAsPixels, 0, 0, 0);
+
             SingleBadge badge = badgeList.get(i);
             badge_text.setText(badge.getText());
             badge_text.setGravity(Gravity.CENTER);
             badge_text.setTextColor(Color.WHITE);
             badge_text.setLayoutParams(text_params);
+            outer_container.addView(badge_text);
         }
 
 
@@ -203,6 +205,9 @@ public class InstaBadgeView extends LinearLayout {
             badge_params.gravity = Gravity.CENTER;
             badge_icon.setLayoutParams(badge_params);
             badge_icon.setImageDrawable(badge.getDrawable());
+
+            outer_container.addView(badge_icon);
+
         }
 
 

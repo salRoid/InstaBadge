@@ -20,6 +20,12 @@ public class InstaBadgeManager {
     private InstaBadgeView.InstaBadgeViewClickListener instaBadgeViewClickListener;
     private InstaBadgeView instaBadgeView;
 
+    private static int getXOffset(View instaBadgeView, InstaBadge instaBadge) {
+        int offset;
+        offset = ((instaBadge.getAnchorView().getWidth() - instaBadgeView.getMeasuredWidth()) / 2);
+        return offset;
+    }
+
     public View show(InstaBadge instaBadge) {
 
         View instaBadgeView = create(instaBadge);
@@ -57,9 +63,9 @@ public class InstaBadgeManager {
         instaBadge.getRootView().addView(instaBadgeView);
         instaBadge.getRootView().addView(bottom_dot);
 
-        Point p = CoordinatesFinder.getCoordinates(instaBadgeView,instaBadge);
+        Point p = CoordinatesFinder.getCoordinates(instaBadgeView, instaBadge);
 
-        moveBadgeToCorrectPosition(instaBadgeView, p ,bottom_dot,instaBadge);
+        moveBadgeToCorrectPosition(instaBadgeView, p, bottom_dot, instaBadge);
 
         int anchorViewId = instaBadge.getAnchorView().getId();
         instaBadgeView.setTag(anchorViewId);
@@ -67,34 +73,26 @@ public class InstaBadgeManager {
         return instaBadgeView;
     }
 
-
-
-    private void moveBadgeToCorrectPosition(InstaBadgeView instaBadgeView, Point p, View bottom_dot,InstaBadge instaBadge) {
+    private void moveBadgeToCorrectPosition(InstaBadgeView instaBadgeView, Point p, View bottom_dot, InstaBadge instaBadge) {
         Coordinates coordinates = new Coordinates(instaBadgeView);
         int translationX = p.x - coordinates.left;
-        int translationY = p.y  - coordinates.top;
+        int translationY = p.y - coordinates.top;
         instaBadgeView.setTranslationX(translationX);
         instaBadgeView.setTranslationY(translationY);
-        if(instaBadge.getArrow_postion()==1)
-        bottom_dot.setTranslationY(p.y-96-48);
+        if (instaBadge.getArrow_postion() == 1)
+            bottom_dot.setTranslationY(p.y - 96 - 48);
         else
-            bottom_dot.setTranslationY(p.y+96+48-4*bottom_dot.getLayoutParams().height);
-        bottom_dot.setTranslationX(p.x+(instaBadge.getAnchorView().getWidth())
-                + getXOffset(bottom_dot,instaBadge)-
-                2*bottom_dot.getLayoutParams().width);
+            bottom_dot.setTranslationY(p.y + 96 + 48 - 4 * bottom_dot.getLayoutParams().height);
+        bottom_dot.setTranslationX(p.x + (instaBadge.getAnchorView().getWidth())
+                + getXOffset(bottom_dot, instaBadge) -
+                2 * bottom_dot.getLayoutParams().width);
     }
 
-    public  void setInstaBadgeClickListener(InstaBadgeView.InstaBadgeViewClickListener instaBadgeClickListener) {
+    public void setInstaBadgeClickListener(InstaBadgeView.InstaBadgeViewClickListener instaBadgeClickListener) {
 
-        if (instaBadgeView!=null)
+        if (instaBadgeView != null)
             instaBadgeView.setInstaBadgeClickListener(instaBadgeClickListener);
 
-    }
-
-    private static int getXOffset(View instaBadgeView , InstaBadge instaBadge) {
-        int offset;
-        offset = ((instaBadge.getAnchorView().getWidth() - instaBadgeView.getMeasuredWidth()) / 2);
-        return offset;
     }
 
 }
